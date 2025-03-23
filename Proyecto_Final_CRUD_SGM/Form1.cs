@@ -6,5 +6,12 @@ namespace Proyecto_Final_CRUD_SGM
         {
             InitializeComponent();
         }
+
+        private void btn_Login_Salir_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
+
+       
     }
 }
