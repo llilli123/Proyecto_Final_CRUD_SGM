@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Final_CRUD_SGM
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             btn_Login_Conectarse = new Button();
             btn_Login_Salir = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txt_Login_Contrasena = new TextBox();
+            txt_Login_Usuario = new TextBox();
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
@@ -58,25 +58,31 @@
             btn_Login_Salir.UseVisualStyleBackColor = true;
             btn_Login_Salir.Click += btn_Login_Salir_Click;
             // 
-            // textBox1
+            // txt_Login_Contrasena
             // 
-            textBox1.Location = new Point(409, 210);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(334, 27);
-            textBox1.TabIndex = 2;
+            txt_Login_Contrasena.Location = new Point(409, 210);
+            txt_Login_Contrasena.Name = "txt_Login_Contrasena";
+            txt_Login_Contrasena.Size = new Size(334, 27);
+            txt_Login_Contrasena.TabIndex = 2;
+            txt_Login_Contrasena.Text = "Contraseña";
+            txt_Login_Contrasena.Enter += txt_Login_Contrasena_Enter;
+            txt_Login_Contrasena.Leave += txt_Login_Contrasena_Leave;
             // 
-            // textBox2
+            // txt_Login_Usuario
             // 
-            textBox2.Location = new Point(409, 144);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(334, 27);
-            textBox2.TabIndex = 3;
+            txt_Login_Usuario.Location = new Point(409, 144);
+            txt_Login_Usuario.Name = "txt_Login_Usuario";
+            txt_Login_Usuario.Size = new Size(334, 27);
+            txt_Login_Usuario.TabIndex = 3;
+            txt_Login_Usuario.Text = "Usuario";
+            txt_Login_Usuario.Enter += txt_Login_Usuario_Enter;
+            txt_Login_Usuario.Leave += txt_Login_Usuario_Leave;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(409, 322);
+            label1.Location = new Point(409, 337);
             label1.Name = "label1";
             label1.Size = new Size(386, 119);
             label1.TabIndex = 4;
@@ -102,7 +108,7 @@
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
-            // Form1
+            // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -110,11 +116,11 @@
             Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txt_Login_Usuario);
+            Controls.Add(txt_Login_Contrasena);
             Controls.Add(btn_Login_Salir);
             Controls.Add(btn_Login_Conectarse);
-            Name = "Form1";
+            Name = "Login";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -125,8 +131,8 @@
 
         private Button btn_Login_Conectarse;
         private Button btn_Login_Salir;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txt_Login_Contrasena;
+        private TextBox txt_Login_Usuario;
         private Label label1;
         private Label label2;
         private PictureBox pictureBox1;
