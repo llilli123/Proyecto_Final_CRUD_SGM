@@ -47,6 +47,7 @@
             btn_Login_Conectarse.TabIndex = 0;
             btn_Login_Conectarse.Text = "Conectarse";
             btn_Login_Conectarse.UseVisualStyleBackColor = true;
+            btn_Login_Conectarse.Click += btn_Login_Conectarse_Click;
             // 
             // btn_Login_Salir
             // 
