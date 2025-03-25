@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label12 = new Label();
-            label11 = new Label();
-            label10 = new Label();
             panel2 = new Panel();
             panel5 = new Panel();
-            textBox1 = new TextBox();
+            label12 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            txtNombre = new TextBox();
             label1 = new Label();
             panel3 = new Panel();
             label2 = new Label();
@@ -42,21 +42,21 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox5 = new TextBox();
+            txtCorreoElectronico = new TextBox();
+            txtCedulaPasaporte = new TextBox();
+            txtApellido = new TextBox();
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            textBox6 = new TextBox();
-            comboBox1 = new ComboBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            checkBox1 = new CheckBox();
-            checkBox2 = new CheckBox();
-            checkBox3 = new CheckBox();
+            txtTelefono = new TextBox();
+            cmbSeguro = new ComboBox();
+            rbtnMasculino = new RadioButton();
+            rbtnFemenino = new RadioButton();
+            chkReflujo = new CheckBox();
+            chkDispepsia = new CheckBox();
+            chkUlcera = new CheckBox();
             panel4 = new Panel();
-            button1 = new Button();
+            btnContinuar = new Button();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             panel3.SuspendLayout();
@@ -72,39 +72,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(332, 722);
             panel1.TabIndex = 0;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.ForeColor = SystemColors.ControlLightLight;
-            label12.Location = new Point(25, 67);
-            label12.Name = "label12";
-            label12.Size = new Size(262, 28);
-            label12.TabIndex = 6;
-            label12.Text = "informacion@grupouce.com";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = SystemColors.Control;
-            label11.Location = new Point(57, 39);
-            label11.Name = "label11";
-            label11.Size = new Size(160, 28);
-            label11.TabIndex = 5;
-            label11.Text = "(809)  4354 4343";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.ForeColor = SystemColors.ControlLightLight;
-            label10.Location = new Point(47, 11);
-            label10.Name = "label10";
-            label10.Size = new Size(193, 28);
-            label10.TabIndex = 4;
-            label10.Text = "Pongase en contacto";
             // 
             // panel2
             // 
@@ -123,13 +90,46 @@
             panel5.Size = new Size(295, 125);
             panel5.TabIndex = 7;
             // 
-            // textBox1
+            // label12
             // 
-            textBox1.Location = new Point(358, 143);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(280, 45);
-            textBox1.TabIndex = 1;
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.ForeColor = SystemColors.ControlLightLight;
+            label12.Location = new Point(25, 67);
+            label12.Name = "label12";
+            label12.Size = new Size(262, 28);
+            label12.TabIndex = 6;
+            label12.Text = "informacion@grupouce.com";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.ForeColor = SystemColors.ControlLightLight;
+            label10.Location = new Point(47, 11);
+            label10.Name = "label10";
+            label10.Size = new Size(193, 28);
+            label10.TabIndex = 4;
+            label10.Text = "Pongase en contacto";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.ForeColor = SystemColors.Control;
+            label11.Location = new Point(57, 39);
+            label11.Name = "label11";
+            label11.Size = new Size(160, 28);
+            label11.TabIndex = 5;
+            label11.Text = "(809)  4354 4343";
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(358, 143);
+            txtNombre.Multiline = true;
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(280, 45);
+            txtNombre.TabIndex = 1;
             // 
             // label1
             // 
@@ -201,29 +201,29 @@
             label6.TabIndex = 8;
             label6.Text = "Cual es su seguro?";
             // 
-            // textBox2
+            // txtCorreoElectronico
             // 
-            textBox2.Location = new Point(358, 258);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(280, 45);
-            textBox2.TabIndex = 9;
+            txtCorreoElectronico.Location = new Point(358, 258);
+            txtCorreoElectronico.Multiline = true;
+            txtCorreoElectronico.Name = "txtCorreoElectronico";
+            txtCorreoElectronico.Size = new Size(280, 45);
+            txtCorreoElectronico.TabIndex = 9;
             // 
-            // textBox3
+            // txtCedulaPasaporte
             // 
-            textBox3.Location = new Point(358, 381);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(280, 49);
-            textBox3.TabIndex = 10;
+            txtCedulaPasaporte.Location = new Point(358, 381);
+            txtCedulaPasaporte.Multiline = true;
+            txtCedulaPasaporte.Name = "txtCedulaPasaporte";
+            txtCedulaPasaporte.Size = new Size(280, 49);
+            txtCedulaPasaporte.TabIndex = 10;
             // 
-            // textBox5
+            // txtApellido
             // 
-            textBox5.Location = new Point(706, 143);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(272, 45);
-            textBox5.TabIndex = 12;
+            txtApellido.Location = new Point(706, 143);
+            txtApellido.Multiline = true;
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(272, 45);
+            txtApellido.TabIndex = 12;
             // 
             // label7
             // 
@@ -255,101 +255,101 @@
             label9.TabIndex = 15;
             label9.Text = "Elegir Razon";
             // 
-            // textBox6
+            // txtTelefono
             // 
-            textBox6.Location = new Point(706, 258);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(272, 45);
-            textBox6.TabIndex = 16;
+            txtTelefono.Location = new Point(706, 258);
+            txtTelefono.Multiline = true;
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(272, 45);
+            txtTelefono.TabIndex = 16;
             // 
-            // comboBox1
+            // cmbSeguro
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(367, 519);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(280, 28);
-            comboBox1.TabIndex = 18;
+            cmbSeguro.FormattingEnabled = true;
+            cmbSeguro.Location = new Point(367, 519);
+            cmbSeguro.Name = "cmbSeguro";
+            cmbSeguro.Size = new Size(280, 28);
+            cmbSeguro.TabIndex = 18;
             // 
-            // radioButton1
+            // rbtnMasculino
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton1.Location = new Point(713, 385);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(140, 35);
-            radioButton1.TabIndex = 19;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Masculino";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbtnMasculino.AutoSize = true;
+            rbtnMasculino.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rbtnMasculino.Location = new Point(713, 385);
+            rbtnMasculino.Name = "rbtnMasculino";
+            rbtnMasculino.Size = new Size(140, 35);
+            rbtnMasculino.TabIndex = 19;
+            rbtnMasculino.TabStop = true;
+            rbtnMasculino.Text = "Masculino";
+            rbtnMasculino.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbtnFemenino
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton2.Location = new Point(713, 423);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(135, 35);
-            radioButton2.TabIndex = 20;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Femenino";
-            radioButton2.UseVisualStyleBackColor = true;
+            rbtnFemenino.AutoSize = true;
+            rbtnFemenino.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rbtnFemenino.Location = new Point(713, 423);
+            rbtnFemenino.Name = "rbtnFemenino";
+            rbtnFemenino.Size = new Size(135, 35);
+            rbtnFemenino.TabIndex = 20;
+            rbtnFemenino.TabStop = true;
+            rbtnFemenino.Text = "Femenino";
+            rbtnFemenino.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // chkReflujo
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox1.Location = new Point(710, 519);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(275, 35);
-            checkBox1.TabIndex = 21;
-            checkBox1.Text = "Reflujo gastroesofágico";
-            checkBox1.UseVisualStyleBackColor = true;
+            chkReflujo.AutoSize = true;
+            chkReflujo.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkReflujo.Location = new Point(710, 519);
+            chkReflujo.Name = "chkReflujo";
+            chkReflujo.Size = new Size(275, 35);
+            chkReflujo.TabIndex = 21;
+            chkReflujo.Text = "Reflujo gastroesofágico";
+            chkReflujo.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chkDispepsia
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox2.Location = new Point(710, 551);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(236, 35);
-            checkBox2.TabIndex = 22;
-            checkBox2.Text = "Dispepsia funcional";
-            checkBox2.UseVisualStyleBackColor = true;
+            chkDispepsia.AutoSize = true;
+            chkDispepsia.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkDispepsia.Location = new Point(710, 551);
+            chkDispepsia.Name = "chkDispepsia";
+            chkDispepsia.Size = new Size(236, 35);
+            chkDispepsia.TabIndex = 22;
+            chkDispepsia.Text = "Dispepsia funcional";
+            chkDispepsia.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // chkUlcera
             // 
-            checkBox3.AutoSize = true;
-            checkBox3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox3.Location = new Point(710, 581);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(278, 35);
-            checkBox3.TabIndex = 23;
-            checkBox3.Text = "Úlcera gastro-duodenal";
-            checkBox3.UseVisualStyleBackColor = true;
+            chkUlcera.AutoSize = true;
+            chkUlcera.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkUlcera.Location = new Point(710, 581);
+            chkUlcera.Name = "chkUlcera";
+            chkUlcera.Size = new Size(278, 35);
+            chkUlcera.TabIndex = 23;
+            chkUlcera.Text = "Úlcera gastro-duodenal";
+            chkUlcera.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
             panel4.BackColor = SystemColors.ControlLightLight;
-            panel4.Controls.Add(button1);
+            panel4.Controls.Add(btnContinuar);
             panel4.Location = new Point(331, 634);
             panel4.Name = "panel4";
             panel4.Size = new Size(700, 87);
             panel4.TabIndex = 24;
             // 
-            // button1
+            // btnContinuar
             // 
-            button1.BackColor = SystemColors.Highlight;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.HighlightText;
-            button1.Location = new Point(506, 15);
-            button1.Name = "button1";
-            button1.Size = new Size(179, 59);
-            button1.TabIndex = 0;
-            button1.Text = "Continuar";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnContinuar.BackColor = SystemColors.Highlight;
+            btnContinuar.BackgroundImageLayout = ImageLayout.None;
+            btnContinuar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnContinuar.ForeColor = SystemColors.HighlightText;
+            btnContinuar.Location = new Point(506, 15);
+            btnContinuar.Name = "btnContinuar";
+            btnContinuar.Size = new Size(179, 59);
+            btnContinuar.TabIndex = 0;
+            btnContinuar.Text = "Continuar";
+            btnContinuar.UseVisualStyleBackColor = false;
+            btnContinuar.Click += button1_Click;
             // 
             // Entrada_de_datos_cita
             // 
@@ -358,26 +358,26 @@
             BackColor = Color.White;
             ClientSize = new Size(1030, 721);
             Controls.Add(panel4);
-            Controls.Add(checkBox3);
-            Controls.Add(checkBox2);
-            Controls.Add(checkBox1);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox6);
+            Controls.Add(chkUlcera);
+            Controls.Add(chkDispepsia);
+            Controls.Add(chkReflujo);
+            Controls.Add(rbtnFemenino);
+            Controls.Add(rbtnMasculino);
+            Controls.Add(cmbSeguro);
+            Controls.Add(txtTelefono);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(textBox5);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(txtApellido);
+            Controls.Add(txtCedulaPasaporte);
+            Controls.Add(txtCorreoElectronico);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(panel3);
-            Controls.Add(textBox1);
+            Controls.Add(txtNombre);
             Controls.Add(panel1);
             Name = "Entrada_de_datos_cita";
             Text = "Entrada_de_datos_cita";
@@ -396,7 +396,7 @@
 
         private Panel panel1;
         private Panel panel2;
-        private TextBox textBox1;
+        private TextBox txtNombre;
         private Label label1;
         private Panel panel3;
         private Label label2;
@@ -404,21 +404,21 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox5;
+        private TextBox txtCorreoElectronico;
+        private TextBox txtCedulaPasaporte;
+        private TextBox txtApellido;
         private Label label7;
         private Label label8;
         private Label label9;
-        private TextBox textBox6;
-        private ComboBox comboBox1;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private CheckBox checkBox1;
-        private CheckBox checkBox2;
-        private CheckBox checkBox3;
+        private TextBox txtTelefono;
+        private ComboBox cmbSeguro;
+        private RadioButton rbtnMasculino;
+        private RadioButton rbtnFemenino;
+        private CheckBox chkReflujo;
+        private CheckBox chkDispepsia;
+        private CheckBox chkUlcera;
         private Panel panel4;
-        private Button button1;
+        private Button btnContinuar;
         private Label label12;
         private Label label11;
         private Label label10;

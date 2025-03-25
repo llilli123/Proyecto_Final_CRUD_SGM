@@ -1,3 +1,5 @@
+using CAPA_PRESENTACION;
+
 namespace Proyecto_Final_CRUD_SGM
 {
     internal static class Program
@@ -11,7 +13,8 @@ namespace Proyecto_Final_CRUD_SGM
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Login());
+            Application.Run(new Entrada_de_datos_cita());
+
         }
     }
 }
