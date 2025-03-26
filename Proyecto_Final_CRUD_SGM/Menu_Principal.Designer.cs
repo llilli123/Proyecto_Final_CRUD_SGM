@@ -64,13 +64,13 @@
             // gESTIONARToolStripMenuItem
             // 
             gESTIONARToolStripMenuItem.Name = "gESTIONARToolStripMenuItem";
-            gESTIONARToolStripMenuItem.Size = new Size(224, 26);
+            gESTIONARToolStripMenuItem.Size = new Size(155, 26);
             gESTIONARToolStripMenuItem.Text = "Gestionar";
             // 
             // listadoToolStripMenuItem
             // 
             listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            listadoToolStripMenuItem.Size = new Size(224, 26);
+            listadoToolStripMenuItem.Size = new Size(155, 26);
             listadoToolStripMenuItem.Text = "Listado";
             // 
             // pacientesToolStripMenuItem
@@ -83,13 +83,13 @@
             // gestionarToolStripMenuItem1
             // 
             gestionarToolStripMenuItem1.Name = "gestionarToolStripMenuItem1";
-            gestionarToolStripMenuItem1.Size = new Size(224, 26);
+            gestionarToolStripMenuItem1.Size = new Size(155, 26);
             gestionarToolStripMenuItem1.Text = "Gestionar";
             // 
             // listadoToolStripMenuItem1
             // 
             listadoToolStripMenuItem1.Name = "listadoToolStripMenuItem1";
-            listadoToolStripMenuItem1.Size = new Size(224, 26);
+            listadoToolStripMenuItem1.Size = new Size(155, 26);
             listadoToolStripMenuItem1.Text = "Listado";
             // 
             // consultaToolStripMenuItem
@@ -102,7 +102,7 @@
             // gestionToolStripMenuItem
             // 
             gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
-            gestionToolStripMenuItem.Size = new Size(224, 26);
+            gestionToolStripMenuItem.Size = new Size(142, 26);
             gestionToolStripMenuItem.Text = "Gestion";
             // 
             // doctorToolStripMenuItem

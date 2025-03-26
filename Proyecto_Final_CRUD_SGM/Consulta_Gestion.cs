@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace CAPA_PRESENTACION
 {
-    public partial class Menu_Principal : Form
+    public partial class Consulta_Gestion : Form
     {
-        public Menu_Principal()
+        public Consulta_Gestion()
         {
             InitializeComponent();
         }
-
-        
     }
 }
