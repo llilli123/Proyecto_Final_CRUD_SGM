@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label15 = new Label();
+            cmbDoctor = new ComboBox();
+            label14 = new Label();
+            txtHora = new TextBox();
+            txtFecha = new TextBox();
+            label13 = new Label();
             panel2 = new Panel();
             panel5 = new Panel();
             label12 = new Label();
@@ -66,12 +72,73 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.Highlight;
+            panel1.Controls.Add(label15);
+            panel1.Controls.Add(cmbDoctor);
+            panel1.Controls.Add(label14);
+            panel1.Controls.Add(txtHora);
+            panel1.Controls.Add(txtFecha);
+            panel1.Controls.Add(label13);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(panel5);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(332, 722);
             panel1.TabIndex = 0;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.ForeColor = SystemColors.ControlLightLight;
+            label15.Location = new Point(204, 11);
+            label15.Name = "label15";
+            label15.Size = new Size(67, 31);
+            label15.TabIndex = 13;
+            label15.Text = "Hora";
+            // 
+            // cmbDoctor
+            // 
+            cmbDoctor.FormattingEnabled = true;
+            cmbDoctor.Location = new Point(14, 160);
+            cmbDoctor.Name = "cmbDoctor";
+            cmbDoctor.Size = new Size(298, 28);
+            cmbDoctor.TabIndex = 12;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label14.ForeColor = SystemColors.ButtonHighlight;
+            label14.Location = new Point(121, 124);
+            label14.Name = "label14";
+            label14.Size = new Size(88, 31);
+            label14.TabIndex = 11;
+            label14.Text = "Doctor";
+            // 
+            // txtHora
+            // 
+            txtHora.Location = new Point(196, 45);
+            txtHora.Name = "txtHora";
+            txtHora.Size = new Size(79, 27);
+            txtHora.TabIndex = 10;
+            // 
+            // txtFecha
+            // 
+            txtFecha.Location = new Point(44, 45);
+            txtFecha.Name = "txtFecha";
+            txtFecha.Size = new Size(132, 27);
+            txtFecha.TabIndex = 9;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = SystemColors.ButtonHighlight;
+            label13.Location = new Point(75, 11);
+            label13.Name = "label13";
+            label13.Size = new Size(75, 31);
+            label13.TabIndex = 8;
+            label13.Text = "Fecha";
             // 
             // panel2
             // 
@@ -85,7 +152,7 @@
             panel5.Controls.Add(label12);
             panel5.Controls.Add(label10);
             panel5.Controls.Add(label11);
-            panel5.Location = new Point(3, 492);
+            panel5.Location = new Point(14, 492);
             panel5.Name = "panel5";
             panel5.Size = new Size(295, 125);
             panel5.TabIndex = 7;
@@ -146,7 +213,7 @@
             // 
             panel3.BackColor = SystemColors.ControlLightLight;
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(331, -1);
+            panel3.Location = new Point(332, -1);
             panel3.Name = "panel3";
             panel3.Size = new Size(700, 85);
             panel3.TabIndex = 3;
@@ -343,7 +410,7 @@
             btnContinuar.BackgroundImageLayout = ImageLayout.None;
             btnContinuar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnContinuar.ForeColor = SystemColors.HighlightText;
-            btnContinuar.Location = new Point(506, 15);
+            btnContinuar.Location = new Point(506, 7);
             btnContinuar.Name = "btnContinuar";
             btnContinuar.Size = new Size(179, 59);
             btnContinuar.TabIndex = 0;
@@ -356,7 +423,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1030, 721);
+            ClientSize = new Size(1030, 706);
             Controls.Add(panel4);
             Controls.Add(chkUlcera);
             Controls.Add(chkDispepsia);
@@ -383,6 +450,7 @@
             Text = "Entrada_de_datos_cita";
             Load += Entrada_de_datos_cita_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel3.ResumeLayout(false);
@@ -423,5 +491,11 @@
         private Label label11;
         private Label label10;
         private Panel panel5;
+        private Label label13;
+        private TextBox txtHora;
+        private TextBox txtFecha;
+        private ComboBox cmbDoctor;
+        private Label label14;
+        private Label label15;
     }
 }

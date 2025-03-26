@@ -59,7 +59,7 @@ namespace Proyecto_Final_CRUD_SGM
         {
             string usuario = txt_Login_Usuario.Text.Trim();
             string contrasena = txt_Login_Contrasena.Text.Trim();
-            int idRol; 
+            int idRol;
 
             bool resultado = logica_Login.SesionConectar(usuario, contrasena, out idRol);
 
@@ -72,6 +72,11 @@ namespace Proyecto_Final_CRUD_SGM
                 menu.Show();
                 this.Hide();  
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

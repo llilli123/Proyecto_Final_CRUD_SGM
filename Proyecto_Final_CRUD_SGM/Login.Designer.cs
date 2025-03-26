@@ -123,6 +123,7 @@
             Controls.Add(btn_Login_Conectarse);
             Name = "Login";
             Text = "Form1";
+            Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
