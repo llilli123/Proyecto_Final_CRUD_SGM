@@ -11,17 +11,21 @@ using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
-namespace CAPA_PRESENTACION
+namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas con la capa de presentación
 {
-    public partial class Entrada_de_datos_cita : Form
+    public partial class Entrada_de_datos_cita : Form //Clase que representa el formulario de entrada de datos de citas
     {
-        public Entrada_de_datos_cita()
+        public Entrada_de_datos_cita() 
         {
-            InitializeComponent();
+            InitializeComponent();  // Método que inicializa los componentes del formulario
         }
 
         private void Entrada_de_datos_cita_Load(object sender, EventArgs e)
         {
+            // Restringir la selección de fechas anteriores a hoy
+            dateTimePicker2.MinDate = DateTime.Today;
+
+            // Agrega opciones a la lista desplegable de seguros médicos
             cmbSeguro.Items.Add("Seleccione una opción");
             cmbSeguro.Items.Add("Seguros Universal");
             cmbSeguro.Items.Add("Mapfre BHD Seguros");
@@ -31,17 +35,16 @@ namespace CAPA_PRESENTACION
             cmbSeguro.Items.Add("Seguros Banreservas");
             cmbSeguro.Items.Add("Seguros Crecer");
             cmbSeguro.Items.Add("Atlántica Seguros");
+            cmbSeguro.SelectedIndex = 0;  // Establece la opción por defecto
 
-
-            cmbSeguro.SelectedIndex = 0;
-
+            // Agrega opciones a la lista desplegable de doctores disponibles
             cmbDoctor.Items.Add("Seleccione una opción");
-            cmbDoctor.Items.Add("Dr. Juan Pérez");
+            cmbDoctor.Items.Add("Dr. Jorge Parra");
             cmbDoctor.Items.Add("Dra. María Rodríguez");
             cmbDoctor.Items.Add("Dr. Carlos Sánchez");
             cmbDoctor.Items.Add("Dra. Laura Martínez");
 
-            cmbDoctor.SelectedIndex = 0;
+            cmbDoctor.SelectedIndex = 0; // Establece la opción por defecto
 
 
         }
@@ -55,52 +58,39 @@ namespace CAPA_PRESENTACION
         {
             try
             {
-                if (string.IsNullOrEmpty(txtNombre.Text) ||
+                // Verifica si todos los campos obligatorios están llenos
+             if (string.IsNullOrEmpty(txtNombre.Text) ||
                  string.IsNullOrEmpty(txtApellido.Text) ||
                  string.IsNullOrEmpty(txtCedulaPasaporte.Text) ||
                  string.IsNullOrEmpty(txtTelefono.Text) ||
                  string.IsNullOrEmpty(txtCorreoElectronico.Text) ||
-                 string.IsNullOrEmpty(txtFecha.Text) ||
-                    string.IsNullOrEmpty(txtHora.Text) ||
                  string.IsNullOrEmpty(cmbDoctor.Text) ||
                  string.IsNullOrEmpty(cmbSeguro.Text))
 
                 {
                     MessageBox.Show("Por favor, llene todos los campos obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Detener ejecución si hay campos vacíos
+                    return; // Detiene la ejecución si hay campos vacíos
                 }
 
-                if (!txtFecha.Text.All(char.IsDigit))
-                {
-                    MessageBox.Show("El campo 'Fecha' debe contener solo números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!txtHora.Text.All(c => char.IsLetter(c) || c == ' '))
-                {
-                    MessageBox.Show("El campo 'Hora' debe contener solo números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
+                // Validación del campo Nombre (solo letras y espacios)
                 if (!txtNombre.Text.All(c => char.IsLetter(c) || c == ' '))
                 {
                     MessageBox.Show("El campo 'Nombre' debe contener solo letras y espacios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                // Validación del campo Apellido (solo letras y espacios)
                 if (!txtApellido.Text.All(c => char.IsLetter(c) || c == ' '))
                 {
                     MessageBox.Show("El campo 'Apellido' debe contener solo letras y espacios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                // Validación del número de teléfono (debe ser un número de 10 dígitos)
                 if (!IsValidPhoneNumber(txtTelefono.Text))
                 {
                     MessageBox.Show("Por favor, ingrese un número de teléfono válido (10 dígitos).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                // Validación del correo electrónico
                 if (!IsValidEmail(txtCorreoElectronico.Text))
                 {
                     MessageBox.Show("Por favor, ingrese un correo electrónico válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -113,11 +103,12 @@ namespace CAPA_PRESENTACION
                     MessageBox.Show("El campo 'Cédula/Pasaporte' es obligatorio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                // Si todas las validaciones son correctas, se muestra un mensaje de éxito
                 MessageBox.Show("Cita registrada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
+                // Captura y muestra cualquier error inesperado
                 MessageBox.Show("Ocurrió un error inesperado: \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -133,7 +124,15 @@ namespace CAPA_PRESENTACION
         {
             return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"); // Expresión regular para un correo electrónico válido
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
+
 }
     
         
