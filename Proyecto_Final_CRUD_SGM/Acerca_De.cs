@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CAPA_PRESENTACION
 {
-    public partial class Formulario_Buscar : Form
+    public partial class Acerca_De : Form
     {
-        public Formulario_Buscar()
+        public Acerca_De()
         {
             InitializeComponent();
         }

@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Listado_Citas));
             dateTimePicker1 = new DateTimePicker();
             dataGridView1 = new DataGridView();
-            button1 = new Button();
             comboBox1 = new ComboBox();
             label1 = new Label();
             label2 = new Label();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -57,15 +58,6 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(806, 493);
             dataGridView1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(35, 434);
-            button1.Name = "button1";
-            button1.Size = new Size(168, 33);
-            button1.TabIndex = 2;
-            button1.Text = "Buscar Cita";
-            button1.UseVisualStyleBackColor = true;
             // 
             // comboBox1
             // 
@@ -93,6 +85,17 @@
             label2.TabIndex = 5;
             label2.Text = "Doctor";
             // 
+            // button2
+            // 
+            button2.Image = (Image)resources.GetObject("button2.Image");
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.Location = new Point(27, 427);
+            button2.Name = "button2";
+            button2.Size = new Size(183, 51);
+            button2.TabIndex = 2;
+            button2.Text = "Buscar Citas";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // Listado_Citas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -102,7 +105,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(comboBox1);
-            Controls.Add(button1);
+            Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(dateTimePicker1);
             Name = "Listado_Citas";
@@ -116,9 +119,9 @@
 
         private DateTimePicker dateTimePicker1;
         private DataGridView dataGridView1;
-        private Button button1;
         private ComboBox comboBox1;
         private Label label1;
         private Label label2;
+        private Button button2;
     }
 }

@@ -90,10 +90,7 @@ namespace CAPA_PRESENTACION
             }
         }
 
-        private void listadoToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void btn_Menu_Principal_Cita_Click(object sender, EventArgs e)
         {
@@ -193,6 +190,24 @@ namespace CAPA_PRESENTACION
             {
 
                 DoctorLista form = new DoctorLista();
+                form.Show();
+            }
+            else
+            {
+
+                Abierto.BringToFront();
+                Abierto.Focus();
+            }
+        }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Acerca_De? Abierto = Application.OpenForms.OfType<Acerca_De>().FirstOrDefault();
+
+            if (Abierto == null)
+            {
+
+                Acerca_De form = new Acerca_De();
                 form.Show();
             }
             else

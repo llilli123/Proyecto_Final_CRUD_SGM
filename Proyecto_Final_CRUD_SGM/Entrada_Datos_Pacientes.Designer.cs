@@ -28,97 +28,112 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Entrada_Datos_Pacientes));
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            btn_Paciente_Guardar = new Button();
+            btn_Paciente_Modificar = new Button();
+            btn_Paciente_Cancelar = new Button();
+            btn_Paciente_Eliminar = new Button();
             label1 = new Label();
             label2 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
+            txt_Paciente_Nombre = new TextBox();
+            txt_Paciente_Correo = new TextBox();
+            txt_Paciente_Telefono = new TextBox();
+            txt_Paciente_Documento = new TextBox();
+            txt_Paciente_Apellido = new TextBox();
             label8 = new Label();
             label10 = new Label();
             label9 = new Label();
             label11 = new Label();
             label12 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtp_Paciente_FDN = new DateTimePicker();
             panel1 = new Panel();
+            cmb_Paciente_Genero = new ComboBox();
+            cmb_Paciente_Nacionalidad = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(884, 272);
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(27, 111);
             button1.Name = "button1";
-            button1.Size = new Size(94, 33);
+            button1.Size = new Size(157, 52);
             button1.TabIndex = 0;
             button1.Text = "Buscar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(884, 327);
+            button2.Image = (Image)resources.GetObject("button2.Image");
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.Location = new Point(216, 111);
             button2.Name = "button2";
-            button2.Size = new Size(94, 33);
+            button2.Size = new Size(163, 52);
             button2.TabIndex = 1;
             button2.Text = "Agregar";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
-            // button3
+            // btn_Paciente_Guardar
             // 
-            button3.BackColor = SystemColors.Highlight;
-            button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = SystemColors.ButtonHighlight;
-            button3.Location = new Point(112, 7);
-            button3.Name = "button3";
-            button3.Size = new Size(138, 47);
-            button3.TabIndex = 2;
-            button3.Text = "Guardar Paciente";
-            button3.UseVisualStyleBackColor = false;
+            btn_Paciente_Guardar.BackColor = SystemColors.Highlight;
+            btn_Paciente_Guardar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_Paciente_Guardar.ForeColor = SystemColors.ButtonHighlight;
+            btn_Paciente_Guardar.Location = new Point(140, 16);
+            btn_Paciente_Guardar.Name = "btn_Paciente_Guardar";
+            btn_Paciente_Guardar.Size = new Size(170, 56);
+            btn_Paciente_Guardar.TabIndex = 2;
+            btn_Paciente_Guardar.Text = "Guardar Paciente";
+            btn_Paciente_Guardar.UseVisualStyleBackColor = false;
+            btn_Paciente_Guardar.Click += btn_Paciente_Guardar_Click;
             // 
-            // button4
+            // btn_Paciente_Modificar
             // 
-            button4.Location = new Point(884, 141);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 33);
-            button4.TabIndex = 3;
-            button4.Text = "Modificar";
-            button4.UseVisualStyleBackColor = true;
+            btn_Paciente_Modificar.Image = (Image)resources.GetObject("btn_Paciente_Modificar.Image");
+            btn_Paciente_Modificar.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Paciente_Modificar.Location = new Point(491, 111);
+            btn_Paciente_Modificar.Name = "btn_Paciente_Modificar";
+            btn_Paciente_Modificar.Size = new Size(155, 52);
+            btn_Paciente_Modificar.TabIndex = 3;
+            btn_Paciente_Modificar.Text = "Modificar";
+            btn_Paciente_Modificar.UseVisualStyleBackColor = true;
+            btn_Paciente_Modificar.Click += btn_Paciente_Modificar_Click;
             // 
-            // button5
+            // btn_Paciente_Cancelar
             // 
-            button5.Location = new Point(6, 10);
-            button5.Name = "button5";
-            button5.Size = new Size(100, 41);
-            button5.TabIndex = 4;
-            button5.Text = "Cancelar";
-            button5.UseVisualStyleBackColor = true;
+            btn_Paciente_Cancelar.Location = new Point(12, 19);
+            btn_Paciente_Cancelar.Name = "btn_Paciente_Cancelar";
+            btn_Paciente_Cancelar.Size = new Size(122, 53);
+            btn_Paciente_Cancelar.TabIndex = 4;
+            btn_Paciente_Cancelar.Text = "Cancelar";
+            btn_Paciente_Cancelar.UseVisualStyleBackColor = true;
+            btn_Paciente_Cancelar.Click += btn_Paciente_Cancelar_Click;
             // 
-            // button6
+            // btn_Paciente_Eliminar
             // 
-            button6.Location = new Point(884, 209);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 33);
-            button6.TabIndex = 5;
-            button6.Text = "Eliminar";
-            button6.UseVisualStyleBackColor = true;
+            btn_Paciente_Eliminar.Image = (Image)resources.GetObject("btn_Paciente_Eliminar.Image");
+            btn_Paciente_Eliminar.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Paciente_Eliminar.Location = new Point(678, 111);
+            btn_Paciente_Eliminar.Name = "btn_Paciente_Eliminar";
+            btn_Paciente_Eliminar.Size = new Size(163, 52);
+            btn_Paciente_Eliminar.TabIndex = 5;
+            btn_Paciente_Eliminar.Text = "Eliminar";
+            btn_Paciente_Eliminar.UseVisualStyleBackColor = true;
+            btn_Paciente_Eliminar.Click += btn_Paciente_Eliminar_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.MenuText;
-            label1.Location = new Point(27, 116);
+            label1.Location = new Point(27, 195);
             label1.Name = "label1";
             label1.Size = new Size(81, 23);
             label1.TabIndex = 6;
@@ -128,7 +143,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.Location = new Point(491, 119);
+            label2.Location = new Point(491, 198);
             label2.Name = "label2";
             label2.Size = new Size(83, 23);
             label2.TabIndex = 7;
@@ -138,7 +153,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(491, 319);
+            label4.Location = new Point(491, 398);
             label4.Name = "label4";
             label4.Size = new Size(83, 23);
             label4.TabIndex = 9;
@@ -148,7 +163,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(491, 219);
+            label5.Location = new Point(491, 298);
             label5.Name = "label5";
             label5.Size = new Size(157, 23);
             label5.TabIndex = 10;
@@ -158,60 +173,46 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(491, 424);
+            label6.Location = new Point(491, 503);
             label6.Name = "label6";
             label6.Size = new Size(120, 23);
             label6.TabIndex = 11;
             label6.Text = "Nacionalidad:";
             // 
-            // textBox1
+            // txt_Paciente_Nombre
             // 
-            textBox1.Location = new Point(27, 151);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(352, 27);
-            textBox1.TabIndex = 13;
+            txt_Paciente_Nombre.Location = new Point(27, 230);
+            txt_Paciente_Nombre.Name = "txt_Paciente_Nombre";
+            txt_Paciente_Nombre.Size = new Size(352, 27);
+            txt_Paciente_Nombre.TabIndex = 13;
             // 
-            // textBox2
+            // txt_Paciente_Correo
             // 
-            textBox2.Location = new Point(27, 458);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(390, 27);
-            textBox2.TabIndex = 14;
+            txt_Paciente_Correo.Location = new Point(27, 537);
+            txt_Paciente_Correo.Name = "txt_Paciente_Correo";
+            txt_Paciente_Correo.Size = new Size(352, 27);
+            txt_Paciente_Correo.TabIndex = 14;
             // 
-            // textBox3
+            // txt_Paciente_Telefono
             // 
-            textBox3.Location = new Point(491, 355);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(250, 27);
-            textBox3.TabIndex = 15;
+            txt_Paciente_Telefono.Location = new Point(491, 434);
+            txt_Paciente_Telefono.Name = "txt_Paciente_Telefono";
+            txt_Paciente_Telefono.Size = new Size(350, 27);
+            txt_Paciente_Telefono.TabIndex = 15;
             // 
-            // textBox4
+            // txt_Paciente_Documento
             // 
-            textBox4.Location = new Point(27, 251);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(293, 27);
-            textBox4.TabIndex = 16;
+            txt_Paciente_Documento.Location = new Point(27, 330);
+            txt_Paciente_Documento.Name = "txt_Paciente_Documento";
+            txt_Paciente_Documento.Size = new Size(352, 27);
+            txt_Paciente_Documento.TabIndex = 16;
             // 
-            // textBox5
+            // txt_Paciente_Apellido
             // 
-            textBox5.Location = new Point(491, 458);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(174, 27);
-            textBox5.TabIndex = 17;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(27, 355);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(140, 27);
-            textBox6.TabIndex = 18;
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(491, 151);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(360, 27);
-            textBox7.TabIndex = 19;
+            txt_Paciente_Apellido.Location = new Point(491, 230);
+            txt_Paciente_Apellido.Name = "txt_Paciente_Apellido";
+            txt_Paciente_Apellido.Size = new Size(350, 27);
+            txt_Paciente_Apellido.TabIndex = 19;
             // 
             // label8
             // 
@@ -237,7 +238,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label9.Location = new Point(27, 216);
+            label9.Location = new Point(27, 295);
             label9.Name = "label9";
             label9.Size = new Size(103, 23);
             label9.TabIndex = 23;
@@ -247,7 +248,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label11.Location = new Point(27, 316);
+            label11.Location = new Point(27, 395);
             label11.Name = "label11";
             label11.Size = new Size(67, 23);
             label11.TabIndex = 24;
@@ -257,58 +258,75 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label12.Location = new Point(27, 421);
+            label12.Location = new Point(27, 500);
             label12.Name = "label12";
             label12.Size = new Size(157, 23);
             label12.TabIndex = 25;
             label12.Text = "Correo Electrónico";
             // 
-            // dateTimePicker1
+            // dtp_Paciente_FDN
             // 
-            dateTimePicker1.Location = new Point(491, 251);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(324, 27);
-            dateTimePicker1.TabIndex = 27;
+            dtp_Paciente_FDN.Location = new Point(491, 330);
+            dtp_Paciente_FDN.Name = "dtp_Paciente_FDN";
+            dtp_Paciente_FDN.Size = new Size(350, 27);
+            dtp_Paciente_FDN.TabIndex = 27;
             // 
             // panel1
             // 
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button5);
-            panel1.Location = new Point(735, 32);
+            panel1.Controls.Add(btn_Paciente_Guardar);
+            panel1.Controls.Add(btn_Paciente_Cancelar);
+            panel1.Location = new Point(609, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 61);
+            panel1.Size = new Size(322, 93);
             panel1.TabIndex = 28;
+            // 
+            // cmb_Paciente_Genero
+            // 
+            cmb_Paciente_Genero.FormattingEnabled = true;
+            cmb_Paciente_Genero.Location = new Point(29, 435);
+            cmb_Paciente_Genero.Name = "cmb_Paciente_Genero";
+            cmb_Paciente_Genero.Size = new Size(350, 28);
+            cmb_Paciente_Genero.TabIndex = 29;
+            // 
+            // cmb_Paciente_Nacionalidad
+            // 
+            cmb_Paciente_Nacionalidad.FormattingEnabled = true;
+            cmb_Paciente_Nacionalidad.Location = new Point(491, 536);
+            cmb_Paciente_Nacionalidad.Name = "cmb_Paciente_Nacionalidad";
+            cmb_Paciente_Nacionalidad.Size = new Size(350, 28);
+            cmb_Paciente_Nacionalidad.TabIndex = 30;
             // 
             // Entrada_Datos_Pacientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1016, 596);
+            ClientSize = new Size(932, 596);
+            Controls.Add(cmb_Paciente_Nacionalidad);
+            Controls.Add(cmb_Paciente_Genero);
             Controls.Add(panel1);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtp_Paciente_FDN);
             Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(label9);
             Controls.Add(label10);
             Controls.Add(label8);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txt_Paciente_Apellido);
+            Controls.Add(txt_Paciente_Documento);
+            Controls.Add(txt_Paciente_Telefono);
+            Controls.Add(txt_Paciente_Correo);
+            Controls.Add(txt_Paciente_Nombre);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button6);
-            Controls.Add(button4);
+            Controls.Add(btn_Paciente_Eliminar);
+            Controls.Add(btn_Paciente_Modificar);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Entrada_Datos_Pacientes";
             Text = "Form1";
+            Load += Entrada_Datos_Pacientes_Load;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -318,28 +336,28 @@
 
         private Button button1;
         private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Button btn_Paciente_Guardar;
+        private Button btn_Paciente_Modificar;
+        private Button btn_Paciente_Cancelar;
+        private Button btn_Paciente_Eliminar;
         private Label label1;
         private Label label2;
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox txt_Paciente_Nombre;
+        private TextBox txt_Paciente_Correo;
+        private TextBox txt_Paciente_Telefono;
+        private TextBox txt_Paciente_Documento;
+        private TextBox txt_Paciente_Apellido;
         private Label label8;
         private Label label10;
         private Label label9;
         private Label label11;
         private Label label12;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtp_Paciente_FDN;
         private Panel panel1;
+        private ComboBox cmb_Paciente_Genero;
+        private ComboBox cmb_Paciente_Nacionalidad;
     }
 }

@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Entrada_de_datos_cita));
             panel1 = new Panel();
+            dateTimePicker1 = new DateTimePicker();
+            comboBox1 = new ComboBox();
+            pictureBox1 = new PictureBox();
             label15 = new Label();
             cmbDoctor = new ComboBox();
             label14 = new Label();
-            txtHora = new TextBox();
-            txtFecha = new TextBox();
             label13 = new Label();
             panel2 = new Panel();
             panel5 = new Panel();
@@ -47,23 +49,18 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            label6 = new Label();
             txtCorreoElectronico = new TextBox();
             txtCedulaPasaporte = new TextBox();
             txtApellido = new TextBox();
             label7 = new Label();
             label8 = new Label();
-            label9 = new Label();
             txtTelefono = new TextBox();
-            cmbSeguro = new ComboBox();
             rbtnMasculino = new RadioButton();
             rbtnFemenino = new RadioButton();
-            chkReflujo = new CheckBox();
-            chkDispepsia = new CheckBox();
-            chkUlcera = new CheckBox();
             panel4 = new Panel();
             btnContinuar = new Button();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel5.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
@@ -72,11 +69,12 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.Highlight;
+            panel1.Controls.Add(dateTimePicker1);
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(cmbDoctor);
             panel1.Controls.Add(label14);
-            panel1.Controls.Add(txtHora);
-            panel1.Controls.Add(txtFecha);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(panel5);
@@ -85,12 +83,39 @@
             panel1.Size = new Size(332, 722);
             panel1.TabIndex = 0;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(29, 57);
+            dateTimePicker1.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(109, 27);
+            dateTimePicker1.TabIndex = 27;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(194, 56);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(112, 28);
+            comboBox1.TabIndex = 26;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(18, 224);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(288, 288);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 25;
+            pictureBox1.TabStop = false;
+            // 
             // label15
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = SystemColors.ControlLightLight;
-            label15.Location = new Point(204, 11);
+            label15.Location = new Point(215, 11);
             label15.Name = "label15";
             label15.Size = new Size(67, 31);
             label15.TabIndex = 13;
@@ -99,7 +124,7 @@
             // cmbDoctor
             // 
             cmbDoctor.FormattingEnabled = true;
-            cmbDoctor.Location = new Point(14, 160);
+            cmbDoctor.Location = new Point(18, 160);
             cmbDoctor.Name = "cmbDoctor";
             cmbDoctor.Size = new Size(298, 28);
             cmbDoctor.TabIndex = 12;
@@ -115,26 +140,12 @@
             label14.TabIndex = 11;
             label14.Text = "Doctor";
             // 
-            // txtHora
-            // 
-            txtHora.Location = new Point(196, 45);
-            txtHora.Name = "txtHora";
-            txtHora.Size = new Size(79, 27);
-            txtHora.TabIndex = 10;
-            // 
-            // txtFecha
-            // 
-            txtFecha.Location = new Point(44, 45);
-            txtFecha.Name = "txtFecha";
-            txtFecha.Size = new Size(132, 27);
-            txtFecha.TabIndex = 9;
-            // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.ForeColor = SystemColors.ButtonHighlight;
-            label13.Location = new Point(75, 11);
+            label13.Location = new Point(39, 11);
             label13.Name = "label13";
             label13.Size = new Size(75, 31);
             label13.TabIndex = 8;
@@ -152,7 +163,7 @@
             panel5.Controls.Add(label12);
             panel5.Controls.Add(label10);
             panel5.Controls.Add(label11);
-            panel5.Location = new Point(14, 492);
+            panel5.Location = new Point(12, 526);
             panel5.Name = "panel5";
             panel5.Size = new Size(295, 125);
             panel5.TabIndex = 7;
@@ -162,7 +173,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.ForeColor = SystemColors.ControlLightLight;
-            label12.Location = new Point(25, 67);
+            label12.Location = new Point(25, 77);
             label12.Name = "label12";
             label12.Size = new Size(262, 28);
             label12.TabIndex = 6;
@@ -192,6 +203,7 @@
             // 
             // txtNombre
             // 
+            txtNombre.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombre.Location = new Point(358, 143);
             txtNombre.Multiline = true;
             txtNombre.Name = "txtNombre";
@@ -258,18 +270,9 @@
             label5.TabIndex = 7;
             label5.Text = "Cedula/Pasaporte";
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(370, 485);
-            label6.Name = "label6";
-            label6.Size = new Size(202, 31);
-            label6.TabIndex = 8;
-            label6.Text = "Cual es su seguro?";
-            // 
             // txtCorreoElectronico
             // 
+            txtCorreoElectronico.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCorreoElectronico.Location = new Point(358, 258);
             txtCorreoElectronico.Multiline = true;
             txtCorreoElectronico.Name = "txtCorreoElectronico";
@@ -278,6 +281,7 @@
             // 
             // txtCedulaPasaporte
             // 
+            txtCedulaPasaporte.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCedulaPasaporte.Location = new Point(358, 381);
             txtCedulaPasaporte.Multiline = true;
             txtCedulaPasaporte.Name = "txtCedulaPasaporte";
@@ -286,6 +290,7 @@
             // 
             // txtApellido
             // 
+            txtApellido.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtApellido.Location = new Point(706, 143);
             txtApellido.Multiline = true;
             txtApellido.Name = "txtApellido";
@@ -312,31 +317,14 @@
             label8.TabIndex = 14;
             label8.Text = "Cual es su sexo?";
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(713, 485);
-            label9.Name = "label9";
-            label9.Size = new Size(140, 31);
-            label9.TabIndex = 15;
-            label9.Text = "Elegir Razon";
-            // 
             // txtTelefono
             // 
+            txtTelefono.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTelefono.Location = new Point(706, 258);
             txtTelefono.Multiline = true;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(272, 45);
             txtTelefono.TabIndex = 16;
-            // 
-            // cmbSeguro
-            // 
-            cmbSeguro.FormattingEnabled = true;
-            cmbSeguro.Location = new Point(367, 519);
-            cmbSeguro.Name = "cmbSeguro";
-            cmbSeguro.Size = new Size(280, 28);
-            cmbSeguro.TabIndex = 18;
             // 
             // rbtnMasculino
             // 
@@ -362,46 +350,13 @@
             rbtnFemenino.Text = "Femenino";
             rbtnFemenino.UseVisualStyleBackColor = true;
             // 
-            // chkReflujo
-            // 
-            chkReflujo.AutoSize = true;
-            chkReflujo.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkReflujo.Location = new Point(710, 519);
-            chkReflujo.Name = "chkReflujo";
-            chkReflujo.Size = new Size(275, 35);
-            chkReflujo.TabIndex = 21;
-            chkReflujo.Text = "Reflujo gastroesofágico";
-            chkReflujo.UseVisualStyleBackColor = true;
-            // 
-            // chkDispepsia
-            // 
-            chkDispepsia.AutoSize = true;
-            chkDispepsia.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkDispepsia.Location = new Point(710, 551);
-            chkDispepsia.Name = "chkDispepsia";
-            chkDispepsia.Size = new Size(236, 35);
-            chkDispepsia.TabIndex = 22;
-            chkDispepsia.Text = "Dispepsia funcional";
-            chkDispepsia.UseVisualStyleBackColor = true;
-            // 
-            // chkUlcera
-            // 
-            chkUlcera.AutoSize = true;
-            chkUlcera.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkUlcera.Location = new Point(710, 581);
-            chkUlcera.Name = "chkUlcera";
-            chkUlcera.Size = new Size(278, 35);
-            chkUlcera.TabIndex = 23;
-            chkUlcera.Text = "Úlcera gastro-duodenal";
-            chkUlcera.UseVisualStyleBackColor = true;
-            // 
             // panel4
             // 
             panel4.BackColor = SystemColors.ControlLightLight;
             panel4.Controls.Add(btnContinuar);
-            panel4.Location = new Point(331, 634);
+            panel4.Location = new Point(338, 601);
             panel4.Name = "panel4";
-            panel4.Size = new Size(700, 87);
+            panel4.Size = new Size(684, 104);
             panel4.TabIndex = 24;
             // 
             // btnContinuar
@@ -425,20 +380,14 @@
             BackColor = Color.White;
             ClientSize = new Size(1030, 706);
             Controls.Add(panel4);
-            Controls.Add(chkUlcera);
-            Controls.Add(chkDispepsia);
-            Controls.Add(chkReflujo);
             Controls.Add(rbtnFemenino);
             Controls.Add(rbtnMasculino);
-            Controls.Add(cmbSeguro);
             Controls.Add(txtTelefono);
-            Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(txtApellido);
             Controls.Add(txtCedulaPasaporte);
             Controls.Add(txtCorreoElectronico);
-            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -451,6 +400,7 @@
             Load += Entrada_de_datos_cita_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel3.ResumeLayout(false);
@@ -471,20 +421,14 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private Label label6;
         private TextBox txtCorreoElectronico;
         private TextBox txtCedulaPasaporte;
         private TextBox txtApellido;
         private Label label7;
         private Label label8;
-        private Label label9;
         private TextBox txtTelefono;
-        private ComboBox cmbSeguro;
         private RadioButton rbtnMasculino;
         private RadioButton rbtnFemenino;
-        private CheckBox chkReflujo;
-        private CheckBox chkDispepsia;
-        private CheckBox chkUlcera;
         private Panel panel4;
         private Button btnContinuar;
         private Label label12;
@@ -492,10 +436,11 @@
         private Label label10;
         private Panel panel5;
         private Label label13;
-        private TextBox txtHora;
-        private TextBox txtFecha;
         private ComboBox cmbDoctor;
         private Label label14;
         private Label label15;
+        private PictureBox pictureBox1;
+        private DateTimePicker dateTimePicker1;
+        private ComboBox comboBox1;
     }
 }

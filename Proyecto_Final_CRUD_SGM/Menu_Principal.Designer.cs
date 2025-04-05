@@ -35,7 +35,6 @@
             listadoToolStripMenuItem = new ToolStripMenuItem();
             pacientesToolStripMenuItem = new ToolStripMenuItem();
             gestionarToolStripMenuItem1 = new ToolStripMenuItem();
-            listadoToolStripMenuItem1 = new ToolStripMenuItem();
             consultaToolStripMenuItem = new ToolStripMenuItem();
             gestionToolStripMenuItem = new ToolStripMenuItem();
             doctorToolStripMenuItem = new ToolStripMenuItem();
@@ -85,7 +84,7 @@
             // 
             // pacientesToolStripMenuItem
             // 
-            pacientesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gestionarToolStripMenuItem1, listadoToolStripMenuItem1 });
+            pacientesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gestionarToolStripMenuItem1 });
             pacientesToolStripMenuItem.Name = "pacientesToolStripMenuItem";
             pacientesToolStripMenuItem.Size = new Size(84, 24);
             pacientesToolStripMenuItem.Text = "Pacientes";
@@ -97,13 +96,6 @@
             gestionarToolStripMenuItem1.Text = "Gestionar";
             gestionarToolStripMenuItem1.Click += gestionarToolStripMenuItem1_Click;
             // 
-            // listadoToolStripMenuItem1
-            // 
-            listadoToolStripMenuItem1.Name = "listadoToolStripMenuItem1";
-            listadoToolStripMenuItem1.Size = new Size(155, 26);
-            listadoToolStripMenuItem1.Text = "Listado";
-            listadoToolStripMenuItem1.Click += listadoToolStripMenuItem1_Click;
-            // 
             // consultaToolStripMenuItem
             // 
             consultaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gestionToolStripMenuItem });
@@ -114,7 +106,7 @@
             // gestionToolStripMenuItem
             // 
             gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
-            gestionToolStripMenuItem.Size = new Size(142, 26);
+            gestionToolStripMenuItem.Size = new Size(224, 26);
             gestionToolStripMenuItem.Text = "Gestion";
             gestionToolStripMenuItem.Click += gestionToolStripMenuItem_Click;
             // 
@@ -144,6 +136,7 @@
             acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
             acercaDeToolStripMenuItem.Size = new Size(89, 24);
             acercaDeToolStripMenuItem.Text = "Acerca de";
+            acercaDeToolStripMenuItem.Click += acercaDeToolStripMenuItem_Click;
             // 
             // pictureBox1
             // 
@@ -238,7 +231,6 @@
         private ToolStripMenuItem listadoToolStripMenuItem;
         private ToolStripMenuItem pacientesToolStripMenuItem;
         private ToolStripMenuItem gestionarToolStripMenuItem1;
-        private ToolStripMenuItem listadoToolStripMenuItem1;
         private ToolStripMenuItem consultaToolStripMenuItem;
         private ToolStripMenuItem gestionToolStripMenuItem;
         private ToolStripMenuItem doctorToolStripMenuItem;

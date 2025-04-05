@@ -1,4 +1,5 @@
 using CAPA_PRESENTACION;
+using CAPA_PRESENTACION.Properties;
 
 namespace Proyecto_Final_CRUD_SGM
 {

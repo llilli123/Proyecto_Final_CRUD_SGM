@@ -22,20 +22,10 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
 
         private void Entrada_de_datos_cita_Load(object sender, EventArgs e)
         {
-            // Restringir la selección de fechas anteriores a hoy
-            dateTimePicker2.MinDate = DateTime.Today;
 
-            // Agrega opciones a la lista desplegable de seguros médicos
-            cmbSeguro.Items.Add("Seleccione una opción");
-            cmbSeguro.Items.Add("Seguros Universal");
-            cmbSeguro.Items.Add("Mapfre BHD Seguros");
-            cmbSeguro.Items.Add("Seguros Sura");
-            cmbSeguro.Items.Add("Humano Seguros");
-            cmbSeguro.Items.Add("La Colonial de Seguros");
-            cmbSeguro.Items.Add("Seguros Banreservas");
-            cmbSeguro.Items.Add("Seguros Crecer");
-            cmbSeguro.Items.Add("Atlántica Seguros");
-            cmbSeguro.SelectedIndex = 0;  // Establece la opción por defecto
+
+
+
 
             // Agrega opciones a la lista desplegable de doctores disponibles
             cmbDoctor.Items.Add("Seleccione una opción");
@@ -64,8 +54,7 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
                  string.IsNullOrEmpty(txtCedulaPasaporte.Text) ||
                  string.IsNullOrEmpty(txtTelefono.Text) ||
                  string.IsNullOrEmpty(txtCorreoElectronico.Text) ||
-                 string.IsNullOrEmpty(cmbDoctor.Text) ||
-                 string.IsNullOrEmpty(cmbSeguro.Text))
+                 string.IsNullOrEmpty(cmbDoctor.Text)) 
 
                 {
                     MessageBox.Show("Por favor, llene todos los campos obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
