@@ -8,35 +8,65 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Data.SqlClient;
+using CAPA_MODELO_DE_NEGOCIOS;
+using CAPA_LOGICA_DE_NEGOCIOS; 
+
 
 namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas con la capa de presentación
 {
     public partial class Entrada_de_datos_cita : Form //Clase que representa el formulario de entrada de datos de citas
     {
-        public Entrada_de_datos_cita() 
+        public Entrada_de_datos_cita()
         {
             InitializeComponent();  // Método que inicializa los componentes del formulario
         }
 
         private void Entrada_de_datos_cita_Load(object sender, EventArgs e)
         {
-
-
-
-
-
-            // Agrega opciones a la lista desplegable de doctores disponibles
+            CargarDoctores();
+            CargarHoras();
+        }
+        private void CargarDoctores()
+        {
+            cmbDoctor.Items.Clear();
             cmbDoctor.Items.Add("Seleccione una opción");
-            cmbDoctor.Items.Add("Dr. Jorge Parra");
-            cmbDoctor.Items.Add("Dra. María Rodríguez");
-            cmbDoctor.Items.Add("Dr. Carlos Sánchez");
-            cmbDoctor.Items.Add("Dra. Laura Martínez");
 
-            cmbDoctor.SelectedIndex = 0; // Establece la opción por defecto
+            try
+            {
+                using (SqlConnection conn = new SqlConnection("Server=.;Database=Proyecto_Final_SGM;Integrated Security=true;TrustServerCertificate=True"))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT NOMBRE FROM DOCTORES", conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cmbDoctor.Items.Add(reader.GetString(0).Trim());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los doctores: " + ex.Message);
+            }
 
+            cmbDoctor.SelectedIndex = 0;
+        }
 
+        private void CargarHoras()
+        {
+            cmbHora.Items.Clear();
+            cmbHora.Items.Add("Seleccione una hora");
+            cmbHora.Items.Add("09:30 AM");
+            cmbHora.Items.Add("10:00 AM");
+            cmbHora.Items.Add("10:30 AM");
+            cmbHora.Items.Add("11:00 AM");
+            cmbHora.Items.Add("11:30 AM");
+            cmbHora.Items.Add("12:00 PM");
+
+            cmbHora.SelectedIndex = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -45,81 +75,104 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
         }
 
         private void button1_Click(object sender, EventArgs e)
+
         {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                string.IsNullOrWhiteSpace(txtCedulaPasaporte.Text) ||
+                cmbHora.SelectedIndex == 0 ||
+                cmbDoctor.SelectedIndex == 0 ||
+                (!rbtnMasculino.Checked && !rbtnFemenino.Checked))
+            {
+                MessageBox.Show("Por favor complete todos los campos obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            Cita nuevaCita = new Cita()
+            {
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
+                Correo = txtCorreoElectronico.Text,
+                Telefono = txtTelefono.Text,
+                CedulaPasaporte = txtCedulaPasaporte.Text,
+                Sexo = rbtnMasculino.Checked ? "Masculino" : "Femenino",
+                FechaCita = dateTimePickerFecha.Value,
+                HoraCita = cmbHora.SelectedItem.ToString(),
+                Doctor = cmbDoctor.SelectedItem.ToString()
+            };
+
+            Logica_de_Cita logica = new Logica_de_Cita();
             try
             {
-                // Verifica si todos los campos obligatorios están llenos
-             if (string.IsNullOrEmpty(txtNombre.Text) ||
-                 string.IsNullOrEmpty(txtApellido.Text) ||
-                 string.IsNullOrEmpty(txtCedulaPasaporte.Text) ||
-                 string.IsNullOrEmpty(txtTelefono.Text) ||
-                 string.IsNullOrEmpty(txtCorreoElectronico.Text) ||
-                 string.IsNullOrEmpty(cmbDoctor.Text)) 
-
-                {
-                    MessageBox.Show("Por favor, llene todos los campos obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Detiene la ejecución si hay campos vacíos
-                }
-
-                // Validación del campo Nombre (solo letras y espacios)
-                if (!txtNombre.Text.All(c => char.IsLetter(c) || c == ' '))
-                {
-                    MessageBox.Show("El campo 'Nombre' debe contener solo letras y espacios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                // Validación del campo Apellido (solo letras y espacios)
-                if (!txtApellido.Text.All(c => char.IsLetter(c) || c == ' '))
-                {
-                    MessageBox.Show("El campo 'Apellido' debe contener solo letras y espacios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                // Validación del número de teléfono (debe ser un número de 10 dígitos)
-                if (!IsValidPhoneNumber(txtTelefono.Text))
-                {
-                    MessageBox.Show("Por favor, ingrese un número de teléfono válido (10 dígitos).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                // Validación del correo electrónico
-                if (!IsValidEmail(txtCorreoElectronico.Text))
-                {
-                    MessageBox.Show("Por favor, ingrese un correo electrónico válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Validación de Cédula/Pasaporte
-                if (string.IsNullOrWhiteSpace(txtCedulaPasaporte.Text))
-                {
-                    MessageBox.Show("El campo 'Cédula/Pasaporte' es obligatorio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                // Si todas las validaciones son correctas, se muestra un mensaje de éxito
-                MessageBox.Show("Cita registrada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bool resultado = logica.RegistrarCita(nuevaCita);
+                if (resultado)
+                    MessageBox.Show("Cita registrada con éxito.");
+                else
+                    MessageBox.Show("No se pudo registrar la cita.");
             }
             catch (Exception ex)
             {
-                // Captura y muestra cualquier error inesperado
-                MessageBox.Show("Ocurrió un error inesperado: \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
-        // Función para validar número de teléfono (10 dígitos numéricos)
-        private bool IsValidPhoneNumber(string phoneNumber)
-        {
-            return Regex.IsMatch(phoneNumber, @"^\d{10}$"); // Solo acepta números con 10 dígitos
-        }
-
-        // Función para validar correo electrónico
-        private bool IsValidEmail(string email)
-        {
-            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"); // Expresión regular para un correo electrónico válido
-        }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btncontinuar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                string.IsNullOrWhiteSpace(txtCedulaPasaporte.Text) ||
+                cmbHora.SelectedIndex == 0 ||
+                cmbDoctor.SelectedIndex == 0 ||
+                (!rbtnMasculino.Checked && !rbtnFemenino.Checked))
+            {
+                MessageBox.Show("Por favor complete todos los campos obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            Cita nuevaCita = new Cita()
+            {
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
+                Correo = txtCorreoElectronico.Text,
+                Telefono = txtTelefono.Text,
+                CedulaPasaporte = txtCedulaPasaporte.Text,
+                Sexo = rbtnMasculino.Checked ? "Masculino" : "Femenino",
+                FechaCita = dateTimePickerFecha.Value,
+                HoraCita = cmbHora.SelectedItem.ToString(),
+                Doctor = cmbDoctor.SelectedItem.ToString()
+            };
+
+            Logica_de_Cita logica = new Logica_de_Cita();
+            try
+            {
+                bool resultado = logica.RegistrarCita(nuevaCita);
+                if (resultado)
+                    MessageBox.Show("Cita registrada con éxito.");
+                else
+                    MessageBox.Show("No se pudo registrar la cita.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
     }
 
 }

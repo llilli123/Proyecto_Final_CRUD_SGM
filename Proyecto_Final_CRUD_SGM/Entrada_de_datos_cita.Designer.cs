@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Entrada_de_datos_cita));
             panel1 = new Panel();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox1 = new ComboBox();
+            dateTimePickerFecha = new DateTimePicker();
+            cmbHora = new ComboBox();
             pictureBox1 = new PictureBox();
             label15 = new Label();
             cmbDoctor = new ComboBox();
@@ -69,8 +69,8 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.Highlight;
-            panel1.Controls.Add(dateTimePicker1);
-            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(dateTimePickerFecha);
+            panel1.Controls.Add(cmbHora);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(cmbDoctor);
@@ -83,22 +83,22 @@
             panel1.Size = new Size(332, 722);
             panel1.TabIndex = 0;
             // 
-            // dateTimePicker1
+            // dateTimePickerFecha
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(29, 57);
-            dateTimePicker1.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(109, 27);
-            dateTimePicker1.TabIndex = 27;
+            dateTimePickerFecha.Format = DateTimePickerFormat.Short;
+            dateTimePickerFecha.Location = new Point(29, 57);
+            dateTimePickerFecha.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
+            dateTimePickerFecha.Name = "dateTimePickerFecha";
+            dateTimePickerFecha.Size = new Size(109, 27);
+            dateTimePickerFecha.TabIndex = 27;
             // 
-            // comboBox1
+            // cmbHora
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(194, 56);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(112, 28);
-            comboBox1.TabIndex = 26;
+            cmbHora.FormattingEnabled = true;
+            cmbHora.Location = new Point(177, 56);
+            cmbHora.Name = "cmbHora";
+            cmbHora.Size = new Size(129, 28);
+            cmbHora.TabIndex = 26;
             // 
             // pictureBox1
             // 
@@ -229,6 +229,7 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(700, 85);
             panel3.TabIndex = 3;
+            panel3.Paint += panel3_Paint;
             // 
             // label2
             // 
@@ -371,7 +372,7 @@
             btnContinuar.TabIndex = 0;
             btnContinuar.Text = "Continuar";
             btnContinuar.UseVisualStyleBackColor = false;
-            btnContinuar.Click += button1_Click;
+            btnContinuar.Click += btncontinuar_Click;
             // 
             // Entrada_de_datos_cita
             // 
@@ -440,7 +441,7 @@
         private Label label14;
         private Label label15;
         private PictureBox pictureBox1;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBox1;
+        private DateTimePicker dateTimePickerFecha;
+        private ComboBox cmbHora;
     }
 }
