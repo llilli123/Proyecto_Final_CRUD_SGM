@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace CAPA_MODELO_DE_NEGOCIOS.Interfaces
 {
+    // Define un contrato que obliga a implementar un metodo para cargar la lista de doctores
     public interface ICargadorDeDoctores
     {
+        // TODO Metodo obligatorio para cargar doctores
         void CargarDoctores();
     }
 }

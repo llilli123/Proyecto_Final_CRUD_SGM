@@ -15,37 +15,46 @@ using System.Windows.Forms;
 
 namespace CAPA_PRESENTACION
 {
+    //TODO Esta clase representa un formulario de gestión de consultas.
     public partial class Consulta_Gestion : Form, ICargadorDeDoctores
     {
         public Consulta_Gestion()
         {
             InitializeComponent();
         }
+        
         private Selector_Turnos_Logica Selct = new Selector_Turnos_Logica();
         private LogicaConsultaGestion Selct2 = new LogicaConsultaGestion();
 
+        //TODO Este método carga los turnos pendientes de un doctor específico en una fecha determinada.
         private void CargarTurnos()
         {
             if (cmb_Consulta_Gestion_Doctor.SelectedValue != null && cmb_Consulta_Gestion_Doctor.SelectedValue is int doctorId)
             {
+                // Obtener el ID del doctor seleccionado
                 DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
                 DataTable tabla = Selct.ObtenerTurnosPendientes(doctorId, fecha);
                 dgv_Paciente_Espera.DataSource = tabla;
             }
         }
 
+        // Este método carga los turnos atendidos de un doctor específico en una fecha determinada.
         private void CargarTurnosAtendidos()
         {
             if (cmb_Consulta_Gestion_Doctor.SelectedValue != null)
             {
+
+                // Obtener el ID del doctor seleccionado
                 int doctorId = Convert.ToInt32(((DataRowView)cmb_Consulta_Gestion_Doctor.SelectedItem)["ID_DOCTOR"]);
                 DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
-
+                 
                 DataTable tabla = Selct.ObtenerTurnosAtendidos(doctorId, fecha);
                 dataGridView2.DataSource = tabla;
             }
         }
 
+
+        // Este método se ejecuta al hacer clic en el botón "Agregar" para asignar un turno a un paciente.
         private void btn_Consulta_Gestion_Agregar_Click(object sender, EventArgs e)
         {
             Busqueda_Paciente buscador = new Busqueda_Paciente();
@@ -85,6 +94,7 @@ namespace CAPA_PRESENTACION
             CargarTurnosAtendidos();
         }
 
+        // Este método carga los doctores disponibles en el ComboBox.
         public void CargarDoctores()
         {
             cmb_Consulta_Gestion_Doctor.DataSource = Selct2.ObtenerDoctores();
@@ -105,6 +115,7 @@ namespace CAPA_PRESENTACION
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Este método se ejecuta al hacer clic en el botón "Eliminar" para eliminar un turno.
             if (dgv_Paciente_Espera.SelectedRows.Count > 0)
             {
                 DialogResult confirmacion = MessageBox.Show(
@@ -113,6 +124,7 @@ namespace CAPA_PRESENTACION
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning
                 );
+                // Si el usuario confirma la eliminación 
 
                 if (confirmacion == DialogResult.Yes)
                 {
@@ -122,6 +134,7 @@ namespace CAPA_PRESENTACION
                     Selector_Turnos_Logica logica = new Selector_Turnos_Logica();
                     bool eliminado = logica.EliminarTurno(turnoId);
 
+                    // Si la eliminación fue exitosa
                     if (eliminado)
                     {
                         MessageBox.Show("Turno eliminado correctamente.");
@@ -176,6 +189,7 @@ namespace CAPA_PRESENTACION
 
         private void dgv_Paciente_Espera_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            // aca se verifica si la celda tiene el estado Turno Atendiendo y cambia su formato
             var row = dgv_Paciente_Espera.Rows[e.RowIndex];
             if (row.Cells["ESTADOTURNO"].Value?.ToString() == "Atendiendo")
             {

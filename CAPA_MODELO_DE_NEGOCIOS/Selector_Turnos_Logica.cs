@@ -10,8 +10,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
+    //TODO Esta clase contiene la lógica de negocio para gestionar los turnos de consulta médica.
     public class Selector_Turnos_Logica
     {
+        // Método para insertar un nuevo turno en la base de datos.
         public bool InsertarTurno(int pacienteId, int doctorId, DateTime fecha, int turno)
         {
             using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
@@ -45,6 +47,8 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        // Método para obtener todos los turnos de un paciente específico
         public bool EliminarTurno(int turnoId)
         {
             using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
@@ -71,6 +75,8 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        // Método para obtener todos los turnos pendientes de un doctor en una fecha 
         public DataTable ObtenerTurnosPendientes(int doctorId, DateTime fecha)
         {
             DataTable tabla = new DataTable();
@@ -94,6 +100,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
 
             return tabla;
         }
+        // Método para obtener todos los turnos que se usaran en la consulta
         public static DataTable TomaTurno()
         {
             DataTable tabla = new DataTable();
@@ -106,6 +113,8 @@ namespace CAPA_MODELO_DE_NEGOCIOS
 
             return tabla;
         }
+
+        // Método para obtener todos los turnos atendidos de un doctor en una fecha
         public DataTable ObtenerTurnosAtendidos(int doctorId, DateTime fecha)
         {
             DataTable tabla = new DataTable();

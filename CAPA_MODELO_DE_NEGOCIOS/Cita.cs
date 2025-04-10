@@ -27,9 +27,6 @@ namespace CAPA_MODELO_DE_NEGOCIOS
         // Hora en la que se realizará la cita
         public TimeSpan HoraCita { get; set; }
 
-        // Cédula o pasaporte del paciente, usado como identificador
-        public string CedulaPasaporte { get; set; }
-
         // Sexo del paciente (Masculino o Femenino)
         public string Sexo { get; set; }
 

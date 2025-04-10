@@ -11,8 +11,10 @@ namespace Proyecto_Final_CRUD_SGM
         [STAThread]
         static void Main()
         {
+            //
             ApplicationConfiguration.Initialize();
 
+          
             var login = new Login();
             if (login.ShowDialog() == DialogResult.OK && login.FormularioParaAbrir != null)
             {

@@ -12,17 +12,21 @@ using System.Windows.Forms;
 
 namespace CAPA_PRESENTACION
 {
+    // TODO Esta clase es la ventana de consulta de reportes
     public partial class Doctor_Consulta_Reporte : Form, ICargadorDeDoctores
     {
         public Doctor_Consulta_Reporte()
         {
             InitializeComponent();
         }
+
+        //  Metodo para mostrar las citas atendidas por el doctor seleccionado
         private void MostrarCitasAtendidas()
         {
             var rowView = cmb_Doctor_Seleccion.SelectedItem as DataRowView;
             if (rowView != null)
             {
+                
                 int doctorId = Convert.ToInt32(rowView["ID_DOCTOR"]);
                 Consulta_Reporte_Logica logica = new Consulta_Reporte_Logica();
                 DateTime fecha = dtp_Fecha_Seleccion_Doctor.Value.Date;
@@ -30,6 +34,7 @@ namespace CAPA_PRESENTACION
                 
             }
         }
+        // Metodo para cargar los doctores en el combobox
         public void CargarDoctores()
         {
             LogicaConsultaGestion logica = new LogicaConsultaGestion();
@@ -54,6 +59,7 @@ namespace CAPA_PRESENTACION
         }
 
         private void btn_start_asistencia_Click(object sender, EventArgs e)
+        //  Este metodo inicia la asistencia de un paciente
         {
             if (dgv_Pacientes_Atender_Doctor.SelectedRows.Count > 0)
             {
@@ -63,6 +69,7 @@ namespace CAPA_PRESENTACION
                 int pacienteId = Convert.ToInt32(fila.Cells["PACIENTE_ID"].Value);
                 var rowView = cmb_Doctor_Seleccion.SelectedItem as DataRowView;
 
+                // Verifica si se ha seleccionado un doctor
                 if (rowView == null)
                 {
                     MessageBox.Show("Debe seleccionar un doctor.");
@@ -73,13 +80,14 @@ namespace CAPA_PRESENTACION
                 DateTime fecha = dtp_Fecha_Seleccion_Doctor.Value.Date;
 
                 Consulta_Reporte_Logica logica = new Consulta_Reporte_Logica();
-
+                // Verifica si ya hay un paciente siendo atendido
                 bool yaHayUno = logica.PacienteAtendiendo(doctorId, fecha);
                 if (yaHayUno)
                 {
                     MessageBox.Show("Ya hay un paciente siendo atendido.");
                     return;
                 }
+                // Actualiza el estado del turno a "Atendiendo"
 
                 bool actualizado = logica.Atendiendo(turnoId, doctorId, fecha, "Atendiendo");
                 if (actualizado)
@@ -99,6 +107,7 @@ namespace CAPA_PRESENTACION
 
         private void dgv_Pacientes_Atender_Doctor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            
             var row = dgv_Pacientes_Atender_Doctor.Rows[e.RowIndex];
             if (row.Cells["ESTADOTURNO"].Value?.ToString() == "Atendiendo")
             {

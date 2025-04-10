@@ -8,25 +8,26 @@ namespace CAPA_MODELO_DE_NEGOCIOS
     {
         // Instancia de la clase que maneja la conexión a la base de datos
         private CONEXIONDATOS conexion = new CONEXIONDATOS();
-
+        // Método para verificar si una cita ya existe en la base de datos
         public bool CitaYaExiste(DateTime fecha, TimeSpan hora, int doctorId)
         {
             using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
-            {
+            {//
                 string query = @"SELECT ID_CITA FROM CITAS
                          WHERE FECHA = @fecha AND HORA = @hora AND ID_DOCTOR = @doctorId AND ESTADOCITA = 'ACTIVA'";
-
+                // Ejecutar la consulta para verificar si ya existe una cita con los mismos parámetros
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@fecha", fecha);
                     cmd.Parameters.AddWithValue("@hora", hora);
                     cmd.Parameters.AddWithValue("@doctorId", doctorId);
-
+                    // se convierte el resultado a entero y se almacena en la variable count y se ejecuta el comando
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     return count > 0;
                 }
             }
         }
+        // Método para obtener el ID del doctor a partir de su nombre
         public int ObtenerIdDoctorPorNombre(string nombre)
         {
             using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
@@ -35,25 +36,31 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
                 object result = cmd.ExecuteScalar();
+                // Convertir el resultado a entero
                 return result != null ? Convert.ToInt32(result) : -1;
             }
         }
-
+        // Método para obtener la lista de nombres de doctores desde la base de datos
         public List<string> ObtenerNombresDoctores()
         {
+            // Crear una lista para almacenar los nombres de los doctores
             List<string> doctores = new List<string>();
-
+            
             using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
             {
                 string query = "SELECT NOMBRE FROM DOCTORES";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    // Ejecutar la consulta y obtener los resultados
+                    //datareader es un objeto que permite leer filas de datos de un SqlDataReader
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        // Leer cada fila de resultados
                         while (reader.Read())
                         {
                             // Asumiendo que la columna "NOMBRE" es la 0:
                             doctores.Add(reader.GetString(0));
+                            // Agregar el nombre del doctor a la lista
                         }
                     }
                 }
@@ -62,6 +69,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             return doctores;
         }
 
+        // Método para registrar una cita en la base de datos
         public bool RegistrarCita(Cita cita)
         {
             try

@@ -9,10 +9,12 @@ using CAPA_DATOS;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
-    
+    //TODO Esta clase contiene la lógica de negocio para buscar pacientes en la base de datos.
     public class LogicaBusquedaPAx
     {
         private CONEXIONDATOS conexion = new CONEXIONDATOS();
+        //TODO Este método busca pacientes en la base de datos según el texto proporcionado.
+        // un datatable es un objeto que representa una tabla de datos en memoria.
         public DataTable BuscarPacientes(string texto)
 
             

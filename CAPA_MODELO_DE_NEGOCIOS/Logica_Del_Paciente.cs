@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
+    //TODO Esta clase contiene el negocio para gestionar los pacientes en el sistema.
     public class Logica_Del_Paciente
     {
         private CONEXIONDATOS conexion = new CONEXIONDATOS();
 
+        /// Método para eleminar un paciente de la base de datos.
         public bool EliminarPaciente(int id)
         {
             try
@@ -28,6 +30,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             }
             catch
             {
+                //retona false si ocurre un error o no se encuentra el paciente
                 return false;
             }
             finally
@@ -36,12 +39,15 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             }
         }
 
+        /// Método para modificar un paciente en la base de datos.
         public bool ModificarPaciente(int id, string nombre, string apellido, string documento, string genero, string correo, string telefono, DateTime fechaNacimiento, string nacionalidad)
         {
             try
             {
+                // Abre la conexión a la base de datos
                 using (SqlConnection conn = conexion.AbrirConexion())
                 {
+                    // Prepara la consulta SQL para actualizar el paciente
                     string query = @"UPDATE PACIENTES SET 
                 NOMBRE = @Nombre,
                 APELLIDO = @Apellido,
@@ -69,6 +75,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             }
             catch
             {
+                //retorna false si ocurre un error
                 return false;
             }
             finally
@@ -77,6 +84,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             }
         }
 
+        /// Método para guardar un nuevo paciente en la base de datos.
         public int GuardarPaciente(string nombre, string apellido, string documento, string genero, string correo, string telefono, DateTime fechaNacimiento, string nacionalidad)
         {
             try
@@ -99,19 +107,23 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                     cmd.Parameters.AddWithValue("@Nacionalidad", nacionalidad);
 
                     object result = cmd.ExecuteScalar();
-
+                    
+                    // Verifica si el resultado no es null y si se puede convertir a int
                     if (result != null && int.TryParse(result.ToString(), out int nuevoID))
                     {
+                        // Si la conversión es exitosa, retorna el nuevo ID
                         return nuevoID;
                     }
                     else
                     {
+                        // Si no se puede convertir a int, retorna 0
                         return 0; 
                     }
                     
                 }
             }
             catch
+            /// Si ocurre un error retorna 0 tambien
             {
                 return 0;
             }

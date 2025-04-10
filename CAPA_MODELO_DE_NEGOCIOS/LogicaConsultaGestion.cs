@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
+    //TODO Esta clase contiene la logica de consultagestion
     public class LogicaConsultaGestion
     {
         private CONEXIONDATOS conexion = new CONEXIONDATOS();
 
-   
+        /// Método para obtener los datos de los doctores
         public DataTable ObtenerDoctores()
         {
             using (SqlConnection conn = conexion.AbrirConexion())

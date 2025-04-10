@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
+    //Clase usada para almacenar los datos del paciente seleccionado en dgv
     public class PacienteSeleccionado
     {
         public int ID { get; set; }

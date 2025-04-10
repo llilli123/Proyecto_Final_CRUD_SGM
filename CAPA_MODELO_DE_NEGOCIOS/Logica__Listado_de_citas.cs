@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
+    //TODO Clase encargada de la lógica para gestionar las citas médicas en el listado
     public class LogicaCitas
     {
         private CONEXIONDATOS conexion = new CONEXIONDATOS();
@@ -13,6 +14,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             {
                 using (SqlConnection conn = conexion.AbrirConexion())
                 {
+                    // Obtiene todas las citas activas para un doctor específico en una fecha determinada.
                     string query = @"
             SELECT C.ID_CITA, C.NOMBRE AS PACIENTE_NOMBRE, C.APELLIDO, C.CORREO, C.TELEFONO, C.FECHA, C.HORA
             FROM CITAS C
@@ -32,9 +34,9 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                 }
             }
         }
-
+        
         public bool EliminarCita(int citaId)
-        {
+        {//metodo para eliminar una cita
             using (SqlConnection con = conexion.AbrirConexion())
             {
                 string query = "DELETE FROM CITAS WHERE ID_CITA = @id";
@@ -44,7 +46,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             }
         }
         public bool ModificarCita(int id, string NOMBRE, string APELLIDO, string CORREO, int TELEFONO, DateTime FECHA, string HORA)
-        {
+        { // metodo para modificar una cita
             using (SqlConnection con = conexion.AbrirConexion())
             {
                 string query = @"UPDATE CITAS SET 
@@ -64,7 +66,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                 cmd.Parameters.AddWithValue("@fecha", FECHA);
                 cmd.Parameters.AddWithValue("@hora", HORA);
                 cmd.Parameters.AddWithValue("@id", id);
-
+                
                 return cmd.ExecuteNonQuery() > 0;
             }
 

@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
+    //TODO Esta clase contiene la lógica de negocio para manejar los reportes médicos.
     public class LogicaDelReporte
     {
-
+        //TODO Propiedades para almacenar los IDs de paciente y doctor
         public int IdPaciente { get; set; }
         public int IdDoctor { get; set; }
         public int TurnoId { get; set; }
@@ -18,6 +19,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
         {
             TurnoId = turnoId;
         }
+        //TODO Método para obtener el ID del paciente a partir del ID del turno
         public Doctor ObtenerDatosDoctor(int doctorId)
         {
             Doctor doctor = null;
@@ -32,8 +34,10 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                 {
                     cmd.Parameters.AddWithValue("@id", doctorId);
 
+                    // Ejecutar la consulta y obtener los datos del doctor
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        // El executereader hace una consulta a la base de datos y devuelve un SqlDataReader
                         if (reader.Read())
                         {
                             doctor = new Doctor
@@ -49,6 +53,8 @@ namespace CAPA_MODELO_DE_NEGOCIOS
 
             return doctor;
         }
+
+        // TODO Método para obtener el ID del paciente a partir del ID del turno
         public Paciente ObtenerDatosPaciente(int pacienteId)
         {
             Paciente paciente = null;
@@ -67,8 +73,10 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                     {
                         if (reader.Read())
                         {
+                            
                             paciente = new Paciente
                             {
+                                //TODO Asignar los valores de las columnas a las propiedades del objeto Paciente
                                 Nombre = reader["NOMBRE"].ToString(),
                                 Apellido = reader["APELLIDO"].ToString(),
                                 Genero = reader["GENERO"].ToString(),
@@ -82,6 +90,8 @@ namespace CAPA_MODELO_DE_NEGOCIOS
 
             return paciente;
         }
+
+        //TODO Método para insertar un nuevo reporte médico en la base de datos
         public bool InsertarReporteMedico(int pacienteId, int doctorId, string motivo, string diagnostico, string tratamiento, string observaciones)
         {
             using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
@@ -102,6 +112,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             }
         }
     }
+    //TODO Clase para representar un paciente
     public class Paciente
     {
         public string Nombre { get; set; }
@@ -109,7 +120,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
         public string Genero { get; set; }
         public string Documento { get; set; }
         public DateTime FechaNacimiento { get; set; }
-}
+    }// TODO Clase para representar un doctor
     public class Doctor
     {
         public string Nombre { get; set; }
