@@ -9,8 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using CAPA_MODELO_DE_NEGOCIOS;
-using CAPA_LOGICA_DE_NEGOCIOS; 
+using CAPA_MODELO_DE_NEGOCIOS; 
 
 
 namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas con la capa de presentación
@@ -29,7 +28,7 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
             CargarDoctores(); // Llama al método para llenar el combo de doctores desde la base de datos
             CargarHoras(); // Llama al método para llenar el combo con horas disponibles
         }
-        
+
 
         // Método para cargar los doctores desde la base de datos y agregarlos al comboBox cmbDoctor
         private void CargarDoctores()
@@ -80,12 +79,6 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {   
-        }
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
         }
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -142,7 +135,7 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
             // Si todo está correcto
             MessageBox.Show("Todos los datos son válidos. Puedes continuar.", "Validación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            
+
 
             // Se crea un objeto de tipo Cita con los datos ingresados
             Cita nuevaCita = new Cita()
@@ -161,7 +154,7 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
             // Se crea una instancia de la lógica de negocio para registrar la cita
             Logica_de_Cita logica = new Logica_de_Cita();
             try
-            {  
+            {
                 // Intenta registrar la cita
                 bool resultado = logica.RegistrarCita(nuevaCita);
                 if (resultado)

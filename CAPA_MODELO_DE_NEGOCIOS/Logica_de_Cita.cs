@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CAPA_MODELO_DE_NEGOCIOS;
 using CAPA_DATOS;
 using Microsoft.Data.SqlClient;
 
-namespace CAPA_LOGICA_DE_NEGOCIOS
+namespace CAPA_MODELO_DE_NEGOCIOS
 {
     // Clase que contiene la lógica de negocio para registrar citas médicas
     public class Logica_de_Cita

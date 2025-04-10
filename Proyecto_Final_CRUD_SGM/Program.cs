@@ -11,11 +11,16 @@ namespace Proyecto_Final_CRUD_SGM
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Menu_Principal());
 
+            var login = new Login();
+
+            // Muestra el formulario de login como diálogo
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new Menu_Principal());
+
+            }
         }
     }
 }

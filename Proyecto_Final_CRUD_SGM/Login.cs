@@ -84,9 +84,8 @@ namespace Proyecto_Final_CRUD_SGM
                 MessageBox.Show($" Bienvenido {usuario}");
 
 
-                Menu_Principal menu = new Menu_Principal();
-                menu.Show();
-                this.Hide();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
                 {

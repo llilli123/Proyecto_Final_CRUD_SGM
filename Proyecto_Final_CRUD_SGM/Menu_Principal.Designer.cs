@@ -41,13 +41,14 @@
             citasToolStripMenuItem1 = new ToolStripMenuItem();
             listadoDeDoctoresToolStripMenuItem = new ToolStripMenuItem();
             acercaDeToolStripMenuItem = new ToolStripMenuItem();
-            pictureBox1 = new PictureBox();
+            ptb_ImagenLOGO_Menu = new PictureBox();
             btn_Menu_Principal_Cita = new Button();
             btn_Menu_Principal_Pacientes = new Button();
             btn_Menu_Principal_Consulta = new Button();
             btn_Menu_Principal_Reportes = new Button();
+            verConsultasToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ptb_ImagenLOGO_Menu).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -106,13 +107,13 @@
             // gestionToolStripMenuItem
             // 
             gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
-            gestionToolStripMenuItem.Size = new Size(224, 26);
+            gestionToolStripMenuItem.Size = new Size(142, 26);
             gestionToolStripMenuItem.Text = "Gestion";
             gestionToolStripMenuItem.Click += gestionToolStripMenuItem_Click;
             // 
             // doctorToolStripMenuItem
             // 
-            doctorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { citasToolStripMenuItem1, listadoDeDoctoresToolStripMenuItem });
+            doctorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { citasToolStripMenuItem1, listadoDeDoctoresToolStripMenuItem, verConsultasToolStripMenuItem });
             doctorToolStripMenuItem.Name = "doctorToolStripMenuItem";
             doctorToolStripMenuItem.Size = new Size(69, 24);
             doctorToolStripMenuItem.Text = "Doctor";
@@ -138,15 +139,16 @@
             acercaDeToolStripMenuItem.Text = "Acerca de";
             acercaDeToolStripMenuItem.Click += acercaDeToolStripMenuItem_Click;
             // 
-            // pictureBox1
+            // ptb_ImagenLOGO_Menu
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(106, 44);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(744, 421);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
+            ptb_ImagenLOGO_Menu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ptb_ImagenLOGO_Menu.Image = (Image)resources.GetObject("ptb_ImagenLOGO_Menu.Image");
+            ptb_ImagenLOGO_Menu.Location = new Point(0, 28);
+            ptb_ImagenLOGO_Menu.Name = "ptb_ImagenLOGO_Menu";
+            ptb_ImagenLOGO_Menu.Size = new Size(850, 445);
+            ptb_ImagenLOGO_Menu.SizeMode = PictureBoxSizeMode.CenterImage;
+            ptb_ImagenLOGO_Menu.TabIndex = 6;
+            ptb_ImagenLOGO_Menu.TabStop = false;
             // 
             // btn_Menu_Principal_Cita
             // 
@@ -201,6 +203,13 @@
             btn_Menu_Principal_Reportes.UseVisualStyleBackColor = true;
             btn_Menu_Principal_Reportes.Click += btn_Menu_Principal_Reportes_Click;
             // 
+            // verConsultasToolStripMenuItem
+            // 
+            verConsultasToolStripMenuItem.Name = "verConsultasToolStripMenuItem";
+            verConsultasToolStripMenuItem.Size = new Size(225, 26);
+            verConsultasToolStripMenuItem.Text = "Ver Consultas";
+            verConsultasToolStripMenuItem.Click += verConsultasToolStripMenuItem_Click;
+            // 
             // Menu_Principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -211,14 +220,14 @@
             Controls.Add(btn_Menu_Principal_Consulta);
             Controls.Add(btn_Menu_Principal_Pacientes);
             Controls.Add(btn_Menu_Principal_Cita);
-            Controls.Add(pictureBox1);
+            Controls.Add(ptb_ImagenLOGO_Menu);
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Menu_Principal";
             Text = "SET";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ptb_ImagenLOGO_Menu).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,10 +246,11 @@
         private ToolStripMenuItem citasToolStripMenuItem1;
         private ToolStripMenuItem listadoDeDoctoresToolStripMenuItem;
         private ToolStripMenuItem acercaDeToolStripMenuItem;
-        private PictureBox pictureBox1;
+        private PictureBox ptb_ImagenLOGO_Menu;
         private Button btn_Menu_Principal_Cita;
         private Button btn_Menu_Principal_Pacientes;
         private Button btn_Menu_Principal_Consulta;
         private Button btn_Menu_Principal_Reportes;
+        private ToolStripMenuItem verConsultasToolStripMenuItem;
     }
 }

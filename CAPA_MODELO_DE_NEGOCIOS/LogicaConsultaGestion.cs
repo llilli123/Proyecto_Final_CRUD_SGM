@@ -26,7 +26,6 @@ namespace CAPA_MODELO_DE_NEGOCIOS
 
                 return dt;
             }
-            conexion.CerrarConexion();
         }
 
        

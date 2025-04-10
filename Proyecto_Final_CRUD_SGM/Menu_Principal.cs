@@ -217,5 +217,24 @@ namespace CAPA_PRESENTACION
                 Abierto.Focus();
             }
         }
+
+        private void verConsultasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Doctor_Consulta_Reporte? Abierto = Application.OpenForms.OfType<Doctor_Consulta_Reporte>().FirstOrDefault();
+
+            if (Abierto == null)
+            {
+
+                Doctor_Consulta_Reporte form = new Doctor_Consulta_Reporte();
+                form.Show();
+            }
+            else
+            {
+
+                Abierto.BringToFront();
+                Abierto.Focus();
+            }
+
+        }
     }
 }

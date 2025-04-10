@@ -53,6 +53,7 @@
             dgv_Paciente_Espera.RowHeadersWidth = 51;
             dgv_Paciente_Espera.Size = new Size(726, 247);
             dgv_Paciente_Espera.TabIndex = 0;
+            dgv_Paciente_Espera.CellFormatting += dgv_Paciente_Espera_CellFormatting;
             // 
             // dtp_Consulta_Gestion_Fecha
             // 
@@ -114,6 +115,7 @@
             cmb_Consulta_Gestion_Doctor.Name = "cmb_Consulta_Gestion_Doctor";
             cmb_Consulta_Gestion_Doctor.Size = new Size(235, 28);
             cmb_Consulta_Gestion_Doctor.TabIndex = 8;
+            cmb_Consulta_Gestion_Doctor.SelectedIndexChanged += cmb_Consulta_Gestion_Doctor_SelectedIndexChanged;
             // 
             // label1
             // 

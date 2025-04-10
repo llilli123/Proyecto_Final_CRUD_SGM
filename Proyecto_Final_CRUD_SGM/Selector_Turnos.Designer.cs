@@ -40,7 +40,7 @@
             dgv_Turnos.Location = new Point(12, 59);
             dgv_Turnos.Name = "dgv_Turnos";
             dgv_Turnos.RowHeadersWidth = 51;
-            dgv_Turnos.Size = new Size(776, 379);
+            dgv_Turnos.Size = new Size(302, 379);
             dgv_Turnos.TabIndex = 0;
             dgv_Turnos.CellContentClick += dgvTurnos_CellDoubleClick;
             // 
@@ -60,7 +60,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(327, 450);
             Controls.Add(btn_Turnos_Seleccionar);
             Controls.Add(dgv_Turnos);
             Name = "Selector_Turnos";
