@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Listado_Citas));
             dateTimePicker1 = new DateTimePicker();
-            dataGridView1 = new DataGridView();
+            dgvCitas = new DataGridView();
             comboBox1 = new ComboBox();
             label1 = new Label();
             label2 = new Label();
-            button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btn_Eliminar = new Button();
+            btn_Editar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).BeginInit();
             SuspendLayout();
             // 
             // dateTimePicker1
@@ -46,21 +46,22 @@
             dateTimePicker1.Size = new Size(168, 27);
             dateTimePicker1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dgvCitas
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.BackgroundColor = SystemColors.ControlLight;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(233, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(806, 493);
-            dataGridView1.TabIndex = 1;
+            dgvCitas.AllowUserToAddRows = false;
+            dgvCitas.AllowUserToDeleteRows = false;
+            dgvCitas.BackgroundColor = SystemColors.ControlLight;
+            dgvCitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCitas.Location = new Point(233, 12);
+            dgvCitas.Name = "dgvCitas";
+            dgvCitas.ReadOnly = true;
+            dgvCitas.RowHeadersWidth = 51;
+            dgvCitas.Size = new Size(806, 380);
+            dgvCitas.TabIndex = 1;
             // 
             // comboBox1
             // 
+            comboBox1.AutoCompleteCustomSource.AddRange(new string[] { "Jorge cabrera", "Ezequiel Peguero", "Yulian Estenyer", "Percha" });
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(35, 199);
             comboBox1.Name = "comboBox1";
@@ -85,32 +86,43 @@
             label2.TabIndex = 5;
             label2.Text = "Doctor";
             // 
-            // button2
+            // btn_Eliminar
             // 
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(27, 427);
-            button2.Name = "button2";
-            button2.Size = new Size(183, 51);
-            button2.TabIndex = 2;
-            button2.Text = "Buscar Citas";
-            button2.UseVisualStyleBackColor = true;
+            btn_Eliminar.Location = new Point(58, 427);
+            btn_Eliminar.Name = "btn_Eliminar";
+            btn_Eliminar.Size = new Size(128, 37);
+            btn_Eliminar.TabIndex = 6;
+            btn_Eliminar.Text = "Eliminar";
+            btn_Eliminar.UseVisualStyleBackColor = true;
+            btn_Eliminar.Click += btn_Eliminar_Click;
+            // 
+            // btn_Editar
+            // 
+            btn_Editar.Location = new Point(233, 427);
+            btn_Editar.Name = "btn_Editar";
+            btn_Editar.Size = new Size(146, 37);
+            btn_Editar.TabIndex = 7;
+            btn_Editar.Text = "Editar";
+            btn_Editar.UseVisualStyleBackColor = true;
+            btn_Editar.Click += btn_Editar_Click;
             // 
             // Listado_Citas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.FloralWhite;
             ClientSize = new Size(1051, 517);
+            Controls.Add(btn_Editar);
+            Controls.Add(btn_Eliminar);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(comboBox1);
-            Controls.Add(button2);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvCitas);
             Controls.Add(dateTimePicker1);
             Name = "Listado_Citas";
             Text = "Listado_Citas";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += Listado_Citas_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -118,10 +130,11 @@
         #endregion
 
         private DateTimePicker dateTimePicker1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvCitas;
         private ComboBox comboBox1;
         private Label label1;
         private Label label2;
-        private Button button2;
+        private Button btn_Eliminar;
+        private Button btn_Editar;
     }
 }

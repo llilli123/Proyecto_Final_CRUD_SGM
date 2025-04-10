@@ -102,7 +102,7 @@ namespace CAPA_PRESENTACION.Properties
             DateTime fechaNacimiento = dtp_Paciente_FDN.Value;
             string nacionalidad = cmb_Paciente_Nacionalidad.Text;
 
-            esNuevoPaciente = false; // Noo es nuevo porque se acaba de guardar
+           //esNuevoPaciente = false; // Noo es nuevo porque se acaba de guardar
             btn_Paciente_Modificar.Enabled = true; // Ahora podemos modificar
 
             Logica_Del_Paciente logica = new Logica_Del_Paciente();
