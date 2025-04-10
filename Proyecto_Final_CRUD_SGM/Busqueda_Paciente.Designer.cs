@@ -224,6 +224,7 @@
             dgv_Busqueda_Pax.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Busqueda_Pax.Location = new Point(4, 224);
             dgv_Busqueda_Pax.Name = "dgv_Busqueda_Pax";
+            dgv_Busqueda_Pax.ReadOnly = true;
             dgv_Busqueda_Pax.RowHeadersWidth = 51;
             dgv_Busqueda_Pax.Size = new Size(1344, 291);
             dgv_Busqueda_Pax.TabIndex = 22;
@@ -239,8 +240,11 @@
             Controls.Add(panel1);
             Controls.Add(btn_Seleccionar);
             Controls.Add(btn_Salir);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Busqueda_Paciente";
-            Text = "Acerca_de";
+            Text = "SET";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_Busqueda_Pax).EndInit();

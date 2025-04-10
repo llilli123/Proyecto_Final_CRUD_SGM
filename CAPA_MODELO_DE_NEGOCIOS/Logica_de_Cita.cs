@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CAPA_DATOS;
+﻿using CAPA_DATOS;
 using Microsoft.Data.SqlClient;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
@@ -12,12 +9,65 @@ namespace CAPA_MODELO_DE_NEGOCIOS
         // Instancia de la clase que maneja la conexión a la base de datos
         private CONEXIONDATOS conexion = new CONEXIONDATOS();
 
+        public bool CitaYaExiste(DateTime fecha, TimeSpan hora, int doctorId)
+        {
+            using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
+            {
+                string query = @"SELECT ID_CITA FROM CITAS
+                         WHERE FECHA = @fecha AND HORA = @hora AND ID_DOCTOR = @doctorId AND ESTADOCITA = 'ACTIVA'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    cmd.Parameters.AddWithValue("@hora", hora);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+        public int ObtenerIdDoctorPorNombre(string nombre)
+        {
+            using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
+            {
+                string query = "SELECT ID_DOCTOR FROM DOCTORES WHERE NOMBRE = @nombre";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : -1;
+            }
+        }
+
+        public List<string> ObtenerNombresDoctores()
+        {
+            List<string> doctores = new List<string>();
+
+            using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
+            {
+                string query = "SELECT NOMBRE FROM DOCTORES";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Asumiendo que la columna "NOMBRE" es la 0:
+                            doctores.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            } conexion.CerrarConexion(); // Cierra la conexión al final
+
+            return doctores;
+        }
+
         public bool RegistrarCita(Cita cita)
         {
             try
-            {  
+            {
                 // Abrir la conexión 
-                using (SqlConnection conn = conexion.AbrirConexion())
+                using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
                 {
                     // Consulta para obtener el ID del doctor según su nombre
                     string queryBuscarDoctor = "SELECT ID_DOCTOR FROM DOCTORES WHERE NOMBRE = @nombreDoctor";
@@ -48,8 +98,8 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                     cmdInsert.Parameters.AddWithValue("@fecha", cita.FechaCita.Date);
 
                     // Convertir HoraCita a formato TIME
-                    TimeSpan hora = DateTime.Parse(cita.HoraCita).TimeOfDay;
-                    cmdInsert.Parameters.AddWithValue("@hora", hora);
+                    
+                    cmdInsert.Parameters.AddWithValue("@hora", cita.HoraCita);
 
                     // Agregar el ID del doctor
                     cmdInsert.Parameters.AddWithValue("@idDoctor", idDoctor);
@@ -73,4 +123,5 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             }
         }
     }
+
 }

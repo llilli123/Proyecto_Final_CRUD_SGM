@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Entrada_Datos_Pacientes));
-            button1 = new Button();
-            button2 = new Button();
+            btn_Buscar = new Button();
+            btn_Agregar = new Button();
             btn_Paciente_Guardar = new Button();
             btn_Paciente_Modificar = new Button();
             btn_Paciente_Cancelar = new Button();
@@ -57,29 +57,29 @@
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // btn_Buscar
             // 
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(27, 111);
-            button1.Name = "button1";
-            button1.Size = new Size(157, 52);
-            button1.TabIndex = 0;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btn_Buscar.Image = (Image)resources.GetObject("btn_Buscar.Image");
+            btn_Buscar.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Buscar.Location = new Point(27, 111);
+            btn_Buscar.Name = "btn_Buscar";
+            btn_Buscar.Size = new Size(157, 52);
+            btn_Buscar.TabIndex = 0;
+            btn_Buscar.Text = "Buscar";
+            btn_Buscar.UseVisualStyleBackColor = true;
+            btn_Buscar.Click += btn_Buscar_Click;
             // 
-            // button2
+            // btn_Agregar
             // 
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(216, 111);
-            button2.Name = "button2";
-            button2.Size = new Size(163, 52);
-            button2.TabIndex = 1;
-            button2.Text = "Agregar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btn_Agregar.Image = (Image)resources.GetObject("btn_Agregar.Image");
+            btn_Agregar.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Agregar.Location = new Point(216, 111);
+            btn_Agregar.Name = "btn_Agregar";
+            btn_Agregar.Size = new Size(163, 52);
+            btn_Agregar.TabIndex = 1;
+            btn_Agregar.Text = "Agregar";
+            btn_Agregar.UseVisualStyleBackColor = true;
+            btn_Agregar.Click += btn_Agregar_Click;
             // 
             // btn_Paciente_Guardar
             // 
@@ -282,6 +282,7 @@
             // 
             // cmb_Paciente_Genero
             // 
+            cmb_Paciente_Genero.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Paciente_Genero.FormattingEnabled = true;
             cmb_Paciente_Genero.Location = new Point(29, 435);
             cmb_Paciente_Genero.Name = "cmb_Paciente_Genero";
@@ -290,6 +291,7 @@
             // 
             // cmb_Paciente_Nacionalidad
             // 
+            cmb_Paciente_Nacionalidad.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Paciente_Nacionalidad.FormattingEnabled = true;
             cmb_Paciente_Nacionalidad.Location = new Point(491, 536);
             cmb_Paciente_Nacionalidad.Name = "cmb_Paciente_Nacionalidad";
@@ -322,10 +324,14 @@
             Controls.Add(label1);
             Controls.Add(btn_Paciente_Eliminar);
             Controls.Add(btn_Paciente_Modificar);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btn_Agregar);
+            Controls.Add(btn_Buscar);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Entrada_Datos_Pacientes";
-            Text = "Form1";
+            Text = "SET";
             Load += Entrada_Datos_Pacientes_Load;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -334,8 +340,8 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
+        private Button btn_Buscar;
+        private Button btn_Agregar;
         private Button btn_Paciente_Guardar;
         private Button btn_Paciente_Modificar;
         private Button btn_Paciente_Cancelar;

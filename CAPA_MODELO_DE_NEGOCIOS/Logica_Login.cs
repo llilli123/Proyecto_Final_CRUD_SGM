@@ -19,7 +19,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
 
             try
             {
-                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlConnection con = new CONEXIONDATOS().AbrirConexion())
                 {
                     string query = "SELECT ID_ROL FROM USUARIOS WHERE NOMBRE = @Nombre AND CONTRASENA_USUARIO = @Contrasena";
 
@@ -43,6 +43,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                     }
 
                 }
+               
             }
             catch (Exception ex)
             {

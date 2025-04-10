@@ -9,12 +9,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using CAPA_MODELO_DE_NEGOCIOS; 
+using System.Globalization;
+using CAPA_MODELO_DE_NEGOCIOS;
+using CAPA_MODELO_DE_NEGOCIOS.Interfaces;
 
 
 namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas con la capa de presentación
 {
-    public partial class Entrada_de_datos_cita : Form //Clase que representa el formulario de entrada de datos de citas
+    public partial class Entrada_de_datos_cita : Form, ICargadorDeDoctores //Clase que representa el formulario de entrada de datos de citas
     {
         // Constructor del formulario. Se ejecuta al crear una instancia de la clase\
         public Entrada_de_datos_cita()
@@ -25,35 +27,37 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
         // Evento que se ejecuta cuando el formulario termina de cargar
         private void Entrada_de_datos_cita_Load(object sender, EventArgs e)
         {
+            dateTimePickerFecha.MinDate = DateTime.Today;
             CargarDoctores(); // Llama al método para llenar el combo de doctores desde la base de datos
             CargarHoras(); // Llama al método para llenar el combo con horas disponibles
         }
 
 
         // Método para cargar los doctores desde la base de datos y agregarlos al comboBox cmbDoctor
-        private void CargarDoctores()
+        public void CargarDoctores()
         {
             cmbDoctor.Items.Clear(); // Limpia los ítems actuales del combo
             cmbDoctor.Items.Add("Seleccione una opción"); // Agrega la opción por defecto
 
+            cmbDoctor.Items.Clear();
+            cmbDoctor.Items.Add("Seleccione una opción");
+
             try
             {
-                // Crea una conexión a la base de datos
-                using (SqlConnection conn = new SqlConnection("Server=.;Database=Proyecto_Final_SGM;Integrated Security=true;TrustServerCertificate=True"))
-                {
-                    conn.Open(); // Abre la conexión
+                // 2) Crear instancia de tu clase de negocio
+                Logica_de_Cita logica = new Logica_de_Cita();
 
-                    // Crea el comando para obtener los nombres de los doctores
-                    using (SqlCommand cmd = new SqlCommand("SELECT NOMBRE FROM DOCTORES", conn))
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        // Lee los nombres de los doctores y los agrega al combo
-                        while (reader.Read())
-                        {
-                            cmbDoctor.Items.Add(reader.GetString(0).Trim());
-                        }
-                    }
+                // 3) Obtener la lista de doctores desde el método
+                List<string> listaDoctores = logica.ObtenerNombresDoctores();
+
+                // 4) Rellenar el ComboBox con los datos obtenidos
+                foreach (string doctor in listaDoctores)
+                {
+                    cmbDoctor.Items.Add(doctor);
                 }
+
+                // 5) Establecer por defecto el primer elemento (“Seleccione una opción”)
+                cmbDoctor.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -78,22 +82,43 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
             cmbHora.SelectedIndex = 0; // Establece la opción por defecto
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
         // Evento que se ejecuta al hacer clic en el botón "Continuar"
         private void btncontinuar_Click(object sender, EventArgs e)
         {
+            
+            Logica_de_Cita logica = new Logica_de_Cita();
+            if (cmbHora.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Debe seleccionar una hora válida.");
+                return;
+            }
+
+            //string hora = cmbHora.Text; // Mantiene el formato "09:30 AM"
+
+            if (cmbDoctor.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar un doctor.");
+                return;
+            }
+
+            DateTime fecha = dateTimePickerFecha.Value.Date;
+            TimeSpan hora = DateTime.ParseExact(cmbHora.Text, "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
+            int doctorId = logica.ObtenerIdDoctorPorNombre(cmbDoctor.SelectedItem.ToString());
+
+            
+            
+
+            if (logica.CitaYaExiste(fecha, hora, doctorId))
+            {
+                MessageBox.Show("Ya existe una cita para este doctor en esta fecha y hora.", "Conflicto de horario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             // Validación: Verifica que todos los campos obligatorios estén llenos
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
                 string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                string.IsNullOrWhiteSpace(txtCedulaPasaporte.Text) ||
+                
                 cmbHora.SelectedIndex == 0 ||
                 cmbDoctor.SelectedIndex == 0 ||
                 (!rbtnMasculino.Checked && !rbtnFemenino.Checked))
@@ -126,12 +151,7 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
                 return;
             }
 
-            // Validar que Cédula/Pasaporte solo tenga números y no más de 10 dígitos
-            if (!txtCedulaPasaporte.Text.All(char.IsDigit) || txtCedulaPasaporte.Text.Length > 10)
-            {
-                MessageBox.Show("El campo Cédula/Pasaporte debe contener solo números y un máximo de 10 dígitos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            
             // Si todo está correcto
             MessageBox.Show("Todos los datos son válidos. Puedes continuar.", "Validación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -144,21 +164,77 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
                 Apellido = txtApellido.Text,
                 Correo = txtCorreoElectronico.Text,
                 Telefono = txtTelefono.Text,
-                CedulaPasaporte = txtCedulaPasaporte.Text,
                 Sexo = rbtnMasculino.Checked ? "Masculino" : "Femenino",
                 FechaCita = dateTimePickerFecha.Value,
-                HoraCita = cmbHora.SelectedItem.ToString(),
+                HoraCita = hora,
                 Doctor = cmbDoctor.SelectedItem.ToString()
             };
 
             // Se crea una instancia de la lógica de negocio para registrar la cita
-            Logica_de_Cita logica = new Logica_de_Cita();
+            
             try
             {
                 // Intenta registrar la cita
                 bool resultado = logica.RegistrarCita(nuevaCita);
                 if (resultado)
-                    MessageBox.Show("Cita registrada con éxito.");
+                { MessageBox.Show("Cita registrada con éxito.");
+
+                    CorreoCitaCreada correo = new CorreoCitaCreada();
+                    correo.EnviarCorreo(
+                         txtCorreoElectronico.Text,
+                        "Confirmación de Cita Médica",
+                        $@"
+                        Hola {txtNombre.Text},
+
+                        Tu cita médica ha sido registrada exitosamente.
+
+                        🗓 Fecha: {dateTimePickerFecha.Value.ToShortDateString()}
+                        ⏰ Hora: {cmbHora.Text}
+                        👨‍⚕️ Doctor: {cmbDoctor.SelectedItem}
+
+                        Por favor, preséntate con 20 minutos de antelación. 
+                        Si no puedes asistir, contáctanos para cancelarla.
+
+                        Gracias por confiar en nuestro centro médico.
+
+                        Atentamente,  
+                        Centro Medico UCE"
+
+
+);
+                    string correoDoctor = correo.ObtenerCorreoDoctor(cmbDoctor.SelectedItem.ToString());
+                    if (!string.IsNullOrWhiteSpace(correoDoctor))
+                    {
+                        CorreoCitaCreada correoADoctor = new CorreoCitaCreada();
+                        correoADoctor.EnviarCorreo(
+                            correoDoctor,
+                            "Nueva cita asignada",
+                            $@"Hola Dr. {cmbDoctor.SelectedItem},
+
+                            Se le ha asignado una nueva cita con los siguientes datos:
+
+                            🧑 Paciente: {txtNombre.Text} {txtApellido.Text}
+                            📅 Fecha: {dateTimePickerFecha.Value.ToShortDateString()}
+                            🕒 Hora: {cmbHora.Text}
+
+                            Por favor, asegúrese de estar disponible en el horario indicado.
+
+                            Atentamente,
+                            Centro Médico UCE"
+                        );
+                    }
+
+                    txtNombre.Clear();
+                    txtApellido.Clear();
+                    txtCorreoElectronico.Clear();
+                    txtTelefono.Clear();
+                    
+                    cmbHora.SelectedIndex = 0;
+                    cmbDoctor.SelectedIndex = 0;
+                    rbtnMasculino.Checked = false;
+                    rbtnFemenino.Checked = false;
+                    dateTimePickerFecha.Value = DateTime.Today;
+                }
                 else
                     MessageBox.Show("No se pudo registrar la cita.");
             }
@@ -173,12 +249,12 @@ namespace CAPA_PRESENTACION // Espacio de nombres que agrupa clases relacionadas
         {
             try
             {
-                var addr = new System.Net.Mail.MailAddress(email); // Usa la clase MailAddress para validar
-                return addr.Address == email;
+                var addr = new System.Net.Mail.MailAddress(email);
+                return true; // Ya no hacemos comparación
             }
             catch
             {
-                return false; // Si ocurre una excepción, el correo no es válido
+                return false;
             }
         }
 

@@ -82,7 +82,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
                     JOIN PACIENTES P ON T.PACIENTE_ID = P.PACIENTE_ID
                     WHERE T.ID_DOCTOR = @doctorId
                     AND CONVERT(DATE, T.FECHATURNO) = @fecha
-                    AND T.ESTADOTURNO = 'Sin atender'";
+                    AND T.ESTADOTURNO IN ('Sin atender', 'Atendiendo')";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@doctorId", doctorId);

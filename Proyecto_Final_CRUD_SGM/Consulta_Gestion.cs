@@ -1,5 +1,6 @@
 ﻿using CAPA_DATOS;
 using CAPA_MODELO_DE_NEGOCIOS;
+using CAPA_MODELO_DE_NEGOCIOS.Interfaces;
 using Microsoft.Data.SqlClient;
 using Proyecto_Final_CRUD_SGM;
 using System;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace CAPA_PRESENTACION
 {
-    public partial class Consulta_Gestion : Form
+    public partial class Consulta_Gestion : Form, ICargadorDeDoctores
     {
         public Consulta_Gestion()
         {
@@ -25,11 +26,9 @@ namespace CAPA_PRESENTACION
 
         private void CargarTurnos()
         {
-            if (cmb_Consulta_Gestion_Doctor.SelectedValue != null)
+            if (cmb_Consulta_Gestion_Doctor.SelectedValue != null && cmb_Consulta_Gestion_Doctor.SelectedValue is int doctorId)
             {
-                int doctorId = Convert.ToInt32(cmb_Consulta_Gestion_Doctor.SelectedValue);
                 DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
-
                 DataTable tabla = Selct.ObtenerTurnosPendientes(doctorId, fecha);
                 dgv_Paciente_Espera.DataSource = tabla;
             }
@@ -39,7 +38,7 @@ namespace CAPA_PRESENTACION
         {
             if (cmb_Consulta_Gestion_Doctor.SelectedValue != null)
             {
-                int doctorId = Convert.ToInt32(cmb_Consulta_Gestion_Doctor.SelectedValue);
+                int doctorId = Convert.ToInt32(((DataRowView)cmb_Consulta_Gestion_Doctor.SelectedItem)["ID_DOCTOR"]);
                 DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
 
                 DataTable tabla = Selct.ObtenerTurnosAtendidos(doctorId, fecha);
@@ -86,7 +85,7 @@ namespace CAPA_PRESENTACION
             CargarTurnosAtendidos();
         }
 
-        private void CargarDoctores()
+        public void CargarDoctores()
         {
             cmb_Consulta_Gestion_Doctor.DataSource = Selct2.ObtenerDoctores();
             cmb_Consulta_Gestion_Doctor.DisplayMember = "NombreCompleto";
@@ -163,6 +162,24 @@ namespace CAPA_PRESENTACION
             else
             {
                 MessageBox.Show("Selecciona una fila primero.");
+            }
+        }
+
+        private void cmb_Consulta_Gestion_Doctor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmb_Consulta_Gestion_Doctor.SelectedIndex != -1)
+            {
+                CargarTurnos();
+                CargarTurnosAtendidos();
+            }
+        }
+
+        private void dgv_Paciente_Espera_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var row = dgv_Paciente_Espera.Rows[e.RowIndex];
+            if (row.Cells["ESTADOTURNO"].Value?.ToString() == "Atendiendo")
+            {
+                row.DefaultCellStyle.Font = new Font(dgv_Paciente_Espera.Font, FontStyle.Bold);
             }
         }
     }

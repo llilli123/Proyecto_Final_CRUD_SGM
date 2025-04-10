@@ -146,59 +146,27 @@ namespace CAPA_PRESENTACION
             }
         }
 
-        private void citasToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ListaPaciente_Reporte? Abierto = Application.OpenForms.OfType<ListaPaciente_Reporte>().FirstOrDefault();
-
-            if (Abierto == null)
-            {
-
-                ListaPaciente_Reporte form = new ListaPaciente_Reporte();
-                form.Show();
-            }
-            else
-            {
-
-                Abierto.BringToFront();
-                Abierto.Focus();
-            }
-        }
-
         private void btn_Menu_Principal_Reportes_Click(object sender, EventArgs e)
         {
-            ListaPaciente_Reporte? Abierto = Application.OpenForms.OfType<ListaPaciente_Reporte>().FirstOrDefault();
+            
+                Doctor_Consulta_Reporte? Abierto = Application.OpenForms.OfType<Doctor_Consulta_Reporte>().FirstOrDefault();
 
-            if (Abierto == null)
-            {
+                if (Abierto == null)
+                {
 
-                ListaPaciente_Reporte form = new ListaPaciente_Reporte();
-                form.Show();
-            }
-            else
-            {
+                    Doctor_Consulta_Reporte form = new Doctor_Consulta_Reporte();
+                    form.Show();
+                }
+                else
+                {
 
-                Abierto.BringToFront();
-                Abierto.Focus();
-            }
+                    Abierto.BringToFront();
+                    Abierto.Focus();
+                }
+
+            
         }
 
-        private void listadoDeDoctoresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DoctorLista? Abierto = Application.OpenForms.OfType<DoctorLista>().FirstOrDefault();
-
-            if (Abierto == null)
-            {
-
-                DoctorLista form = new DoctorLista();
-                form.Show();
-            }
-            else
-            {
-
-                Abierto.BringToFront();
-                Abierto.Focus();
-            }
-        }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {

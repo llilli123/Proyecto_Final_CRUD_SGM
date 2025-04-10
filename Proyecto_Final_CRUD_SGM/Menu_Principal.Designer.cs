@@ -38,15 +38,13 @@
             consultaToolStripMenuItem = new ToolStripMenuItem();
             gestionToolStripMenuItem = new ToolStripMenuItem();
             doctorToolStripMenuItem = new ToolStripMenuItem();
-            citasToolStripMenuItem1 = new ToolStripMenuItem();
-            listadoDeDoctoresToolStripMenuItem = new ToolStripMenuItem();
+            verConsultasToolStripMenuItem = new ToolStripMenuItem();
             acercaDeToolStripMenuItem = new ToolStripMenuItem();
             ptb_ImagenLOGO_Menu = new PictureBox();
             btn_Menu_Principal_Cita = new Button();
             btn_Menu_Principal_Pacientes = new Button();
             btn_Menu_Principal_Consulta = new Button();
             btn_Menu_Principal_Reportes = new Button();
-            verConsultasToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_ImagenLOGO_Menu).BeginInit();
             SuspendLayout();
@@ -113,24 +111,17 @@
             // 
             // doctorToolStripMenuItem
             // 
-            doctorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { citasToolStripMenuItem1, listadoDeDoctoresToolStripMenuItem, verConsultasToolStripMenuItem });
+            doctorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verConsultasToolStripMenuItem });
             doctorToolStripMenuItem.Name = "doctorToolStripMenuItem";
             doctorToolStripMenuItem.Size = new Size(69, 24);
             doctorToolStripMenuItem.Text = "Doctor";
             // 
-            // citasToolStripMenuItem1
+            // verConsultasToolStripMenuItem
             // 
-            citasToolStripMenuItem1.Name = "citasToolStripMenuItem1";
-            citasToolStripMenuItem1.Size = new Size(225, 26);
-            citasToolStripMenuItem1.Text = "Reportes";
-            citasToolStripMenuItem1.Click += citasToolStripMenuItem1_Click;
-            // 
-            // listadoDeDoctoresToolStripMenuItem
-            // 
-            listadoDeDoctoresToolStripMenuItem.Name = "listadoDeDoctoresToolStripMenuItem";
-            listadoDeDoctoresToolStripMenuItem.Size = new Size(225, 26);
-            listadoDeDoctoresToolStripMenuItem.Text = "Listado de Doctores";
-            listadoDeDoctoresToolStripMenuItem.Click += listadoDeDoctoresToolStripMenuItem_Click;
+            verConsultasToolStripMenuItem.Name = "verConsultasToolStripMenuItem";
+            verConsultasToolStripMenuItem.Size = new Size(224, 26);
+            verConsultasToolStripMenuItem.Text = "Ver Consultas";
+            verConsultasToolStripMenuItem.Click += verConsultasToolStripMenuItem_Click;
             // 
             // acercaDeToolStripMenuItem
             // 
@@ -198,17 +189,10 @@
             btn_Menu_Principal_Reportes.Name = "btn_Menu_Principal_Reportes";
             btn_Menu_Principal_Reportes.Size = new Size(88, 80);
             btn_Menu_Principal_Reportes.TabIndex = 10;
-            btn_Menu_Principal_Reportes.Text = "Reportes";
+            btn_Menu_Principal_Reportes.Text = "Doctor";
             btn_Menu_Principal_Reportes.TextAlign = ContentAlignment.BottomCenter;
             btn_Menu_Principal_Reportes.UseVisualStyleBackColor = true;
             btn_Menu_Principal_Reportes.Click += btn_Menu_Principal_Reportes_Click;
-            // 
-            // verConsultasToolStripMenuItem
-            // 
-            verConsultasToolStripMenuItem.Name = "verConsultasToolStripMenuItem";
-            verConsultasToolStripMenuItem.Size = new Size(225, 26);
-            verConsultasToolStripMenuItem.Text = "Ver Consultas";
-            verConsultasToolStripMenuItem.Click += verConsultasToolStripMenuItem_Click;
             // 
             // Menu_Principal
             // 
@@ -243,8 +227,6 @@
         private ToolStripMenuItem consultaToolStripMenuItem;
         private ToolStripMenuItem gestionToolStripMenuItem;
         private ToolStripMenuItem doctorToolStripMenuItem;
-        private ToolStripMenuItem citasToolStripMenuItem1;
-        private ToolStripMenuItem listadoDeDoctoresToolStripMenuItem;
         private ToolStripMenuItem acercaDeToolStripMenuItem;
         private PictureBox ptb_ImagenLOGO_Menu;
         private Button btn_Menu_Principal_Cita;

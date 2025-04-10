@@ -61,8 +61,12 @@
             ClientSize = new Size(1238, 559);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Acerca_De";
-            Text = "Acerca_De";
+            Text = "SET";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

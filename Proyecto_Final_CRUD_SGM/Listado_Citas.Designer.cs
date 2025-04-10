@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dateTimePicker1 = new DateTimePicker();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Listado_Citas));
+            dtp_consultafech = new DateTimePicker();
             dgvCitas = new DataGridView();
-            comboBox1 = new ComboBox();
+            cmb_Doctor_Listado = new ComboBox();
             label1 = new Label();
             label2 = new Label();
             btn_Eliminar = new Button();
@@ -38,13 +39,14 @@
             ((System.ComponentModel.ISupportInitialize)dgvCitas).BeginInit();
             SuspendLayout();
             // 
-            // dateTimePicker1
+            // dtp_consultafech
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(35, 122);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(168, 27);
-            dateTimePicker1.TabIndex = 0;
+            dtp_consultafech.Format = DateTimePickerFormat.Short;
+            dtp_consultafech.Location = new Point(35, 122);
+            dtp_consultafech.Name = "dtp_consultafech";
+            dtp_consultafech.Size = new Size(168, 27);
+            dtp_consultafech.TabIndex = 0;
+            dtp_consultafech.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // dgvCitas
             // 
@@ -59,14 +61,15 @@
             dgvCitas.Size = new Size(806, 380);
             dgvCitas.TabIndex = 1;
             // 
-            // comboBox1
+            // cmb_Doctor_Listado
             // 
-            comboBox1.AutoCompleteCustomSource.AddRange(new string[] { "Jorge cabrera", "Ezequiel Peguero", "Yulian Estenyer", "Percha" });
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(35, 199);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(168, 28);
-            comboBox1.TabIndex = 3;
+            cmb_Doctor_Listado.AutoCompleteCustomSource.AddRange(new string[] { "Jorge cabrera", "Ezequiel Peguero", "Yulian Estenyer", "Percha" });
+            cmb_Doctor_Listado.FormattingEnabled = true;
+            cmb_Doctor_Listado.Location = new Point(35, 199);
+            cmb_Doctor_Listado.Name = "cmb_Doctor_Listado";
+            cmb_Doctor_Listado.Size = new Size(168, 28);
+            cmb_Doctor_Listado.TabIndex = 3;
+            cmb_Doctor_Listado.SelectedIndexChanged += cmb_Doctor_Listado_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -110,17 +113,21 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FloralWhite;
+            BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(1051, 517);
             Controls.Add(btn_Editar);
             Controls.Add(btn_Eliminar);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(cmb_Doctor_Listado);
             Controls.Add(dgvCitas);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtp_consultafech);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Listado_Citas";
-            Text = "Listado_Citas";
+            Text = "SET";
             Load += Listado_Citas_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCitas).EndInit();
             ResumeLayout(false);
@@ -129,12 +136,13 @@
 
         #endregion
 
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtp_consultafech;
         private DataGridView dgvCitas;
         private ComboBox comboBox1;
         private Label label1;
         private Label label2;
         private Button btn_Eliminar;
         private Button btn_Editar;
+        private ComboBox cmb_Doctor_Listado;
     }
 }

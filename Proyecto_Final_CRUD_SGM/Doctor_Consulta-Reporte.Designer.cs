@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Doctor_Consulta_Reporte));
             dgv_Pacientes_Atender_Doctor = new DataGridView();
             btn_start_asistencia = new Button();
             btn_Terminar_Ass = new Button();
@@ -42,6 +43,7 @@
             dgv_Pacientes_Atender_Doctor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Pacientes_Atender_Doctor.Location = new Point(292, 18);
             dgv_Pacientes_Atender_Doctor.Name = "dgv_Pacientes_Atender_Doctor";
+            dgv_Pacientes_Atender_Doctor.ReadOnly = true;
             dgv_Pacientes_Atender_Doctor.RowHeadersWidth = 51;
             dgv_Pacientes_Atender_Doctor.Size = new Size(620, 420);
             dgv_Pacientes_Atender_Doctor.TabIndex = 0;
@@ -104,8 +106,12 @@
             Controls.Add(btn_Terminar_Ass);
             Controls.Add(btn_start_asistencia);
             Controls.Add(dgv_Pacientes_Atender_Doctor);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Doctor_Consulta_Reporte";
-            Text = "Doctor_Consulta_Reporte";
+            Text = "SET";
             Load += Doctor_Consulta_Reporte_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_Pacientes_Atender_Doctor).EndInit();
             ResumeLayout(false);

@@ -25,7 +25,7 @@ namespace CAPA_MODELO_DE_NEGOCIOS
         public DateTime FechaCita { get; set; }
 
         // Hora en la que se realizará la cita
-        public string HoraCita { get; set; }
+        public TimeSpan HoraCita { get; set; }
 
         // Cédula o pasaporte del paciente, usado como identificador
         public string CedulaPasaporte { get; set; }

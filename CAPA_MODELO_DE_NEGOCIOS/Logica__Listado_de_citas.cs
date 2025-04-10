@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using CAPA_DATOS;
 using Microsoft.Data.SqlClient;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
@@ -14,17 +8,31 @@ namespace CAPA_MODELO_DE_NEGOCIOS
     {
         private CONEXIONDATOS conexion = new CONEXIONDATOS();
 
-        public DataTable ObtenerCitas()
+        public DataTable ObtenerCitasPorFechaYDoctor(DateTime fecha, string nombreDoctor)
         {
-            using (SqlConnection con = conexion.AbrirConexion())
             {
-                string query = "SELECT ID_CITA,NOMBRE,APELLIDO,CORREO,TELEFONO,FECHA, HORA,ESTADOCITA FROM CITAS";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable tabla = new DataTable();
-                da.Fill(tabla);
-                return tabla;
+                using (SqlConnection conn = conexion.AbrirConexion())
+                {
+                    string query = @"
+            SELECT C.ID_CITA, C.NOMBRE AS PACIENTE_NOMBRE, C.APELLIDO, C.CORREO, C.TELEFONO, C.FECHA, C.HORA
+            FROM CITAS C
+            INNER JOIN DOCTORES D ON C.ID_DOCTOR = D.ID_DOCTOR
+            WHERE C.FECHA = @fecha AND D.NOMBRE = @nombreDoctor AND C.ESTADOCITA = 'ACTIVA'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@fecha", fecha);
+                        cmd.Parameters.AddWithValue("@nombreDoctor", nombreDoctor);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable tabla = new DataTable();
+                        da.Fill(tabla);
+                        return tabla;
+                    }
+                }
             }
         }
+
         public bool EliminarCita(int citaId)
         {
             using (SqlConnection con = conexion.AbrirConexion())

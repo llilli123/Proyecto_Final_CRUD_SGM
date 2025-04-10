@@ -12,7 +12,7 @@ namespace Proyecto_Final_CRUD_SGM
         {
             InitializeComponent();
         }
-
+        public Form FormularioParaAbrir { get; private set; }
         private void btn_Login_Salir_Click(object sender, EventArgs e)
         {
             Dispose();
@@ -79,22 +79,32 @@ namespace Proyecto_Final_CRUD_SGM
                 return;
             }
 
-            if (logica_Login.SesionConectar(usuario, contrasena, out idRol)) 
+            if (logica_Login.SesionConectar(usuario, contrasena, out idRol))
             {
-                MessageBox.Show($" Bienvenido {usuario}");
+                MessageBox.Show($"Bienvenido {usuario}");
 
+                // Asignar el formulario según el rol
+                if (idRol == 1)
+                    FormularioParaAbrir = new Menu_Principal();
+                else if (idRol == 3)
+                    FormularioParaAbrir = new Menu_Recepcionista();
+                else
+                {
+                    MessageBox.Show("Rol no reconocido.");
+                    return;
+                }
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
-                {
-                    MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_Login_Contrasena.Clear();
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_Login_Usuario.Clear();
+                txt_Login_Contrasena.Clear();
                 txt_Login_Usuario.Focus();
-                }
-            } 
+            }
+        } 
 
         private void Login_Load(object sender, EventArgs e)
         {

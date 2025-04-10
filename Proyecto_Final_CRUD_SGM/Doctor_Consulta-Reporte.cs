@@ -1,4 +1,5 @@
 ﻿using CAPA_MODELO_DE_NEGOCIOS;
+using CAPA_MODELO_DE_NEGOCIOS.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace CAPA_PRESENTACION
 {
-    public partial class Doctor_Consulta_Reporte : Form
+    public partial class Doctor_Consulta_Reporte : Form, ICargadorDeDoctores
     {
         public Doctor_Consulta_Reporte()
         {
@@ -29,7 +30,7 @@ namespace CAPA_PRESENTACION
                 
             }
         }
-        private void CargarDoctores()
+        public void CargarDoctores()
         {
             LogicaConsultaGestion logica = new LogicaConsultaGestion();
             cmb_Doctor_Seleccion.DataSource = logica.ObtenerDoctores();

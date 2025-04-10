@@ -21,7 +21,7 @@ namespace CAPA_PRESENTACION
         public int Telefono => int.Parse(txtTelefono.Text);
         public DateTime Fecha => dtp_Fecha.Value;
         public string Hora => txtHora.Text;
-        
+
 
         public Editar_citas(int id, string nombre, string apellido, string correo, int telefono, DateTime fecha, string hora)
         {
@@ -34,7 +34,7 @@ namespace CAPA_PRESENTACION
             txtTelefono.Text = telefono.ToString();
             dtp_Fecha.Value = fecha;
             txtHora.Text = hora;
-            
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace CAPA_PRESENTACION
             // Verificar que todos los campos sean válidos (no estén vacíos)
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) ||
                 string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrEmpty(txtTelefono.Text))
-                
+
             {
                 MessageBox.Show("Por favor, completa todos los campos.");
                 return;
@@ -65,7 +65,7 @@ namespace CAPA_PRESENTACION
                 int telefono = Convert.ToInt32(txtTelefono.Text);
                 DateTime fecha = dtp_Fecha.Value;
                 string hora = txtHora.Text;
-                
+
 
                 // Llamar al método para guardar los cambios
                 LogicaCitas logica = new LogicaCitas();
@@ -86,4 +86,11 @@ namespace CAPA_PRESENTACION
             {
                 MessageBox.Show("Hubo un error: " + ex.Message);
             }
-        }    }    }
+        }
+
+        private void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}

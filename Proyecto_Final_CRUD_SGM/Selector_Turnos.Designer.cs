@@ -39,6 +39,7 @@
             dgv_Turnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Turnos.Location = new Point(12, 59);
             dgv_Turnos.Name = "dgv_Turnos";
+            dgv_Turnos.ReadOnly = true;
             dgv_Turnos.RowHeadersWidth = 51;
             dgv_Turnos.Size = new Size(302, 379);
             dgv_Turnos.TabIndex = 0;
@@ -63,8 +64,12 @@
             ClientSize = new Size(327, 450);
             Controls.Add(btn_Turnos_Seleccionar);
             Controls.Add(dgv_Turnos);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Selector_Turnos";
-            Text = "Selector_Turnos";
+            Text = "SET";
             Load += Selector_Turnos_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_Turnos).EndInit();
             ResumeLayout(false);

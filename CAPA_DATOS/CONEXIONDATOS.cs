@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-
 namespace CAPA_DATOS
 {
     public class CONEXIONDATOS

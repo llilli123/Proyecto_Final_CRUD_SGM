@@ -41,6 +41,7 @@ namespace CAPA_PRESENTACION.Properties
 
             btn_Paciente_Cancelar.Enabled = estado;
             btn_Paciente_Guardar.Enabled = estado;
+            btn_Paciente_Eliminar.Enabled = !estado;    
         }
         private void CargarCombos()
         {
@@ -74,15 +75,6 @@ namespace CAPA_PRESENTACION.Properties
             dtp_Paciente_FDN.Value = DateTime.Today;
             cmb_Paciente_Nacionalidad.SelectedIndex = -1;
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            esNuevoPaciente = true;
-            idPacienteActual = 0;
-            HabilitarCampos(true);
-            LimpiarCampos();
-            txt_Paciente_Nombre.Focus();
-            btn_Paciente_Modificar.Enabled = false;
-        }
 
         private void Entrada_Datos_Pacientes_Load(object sender, EventArgs e)
         {
@@ -92,6 +84,31 @@ namespace CAPA_PRESENTACION.Properties
 
         private void btn_Paciente_Guardar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txt_Paciente_Nombre.Text) ||
+    string.IsNullOrWhiteSpace(txt_Paciente_Apellido.Text) ||
+    string.IsNullOrWhiteSpace(txt_Paciente_Documento.Text) ||
+    string.IsNullOrWhiteSpace(txt_Paciente_Correo.Text) ||
+    string.IsNullOrWhiteSpace(txt_Paciente_Telefono.Text) ||
+    string.IsNullOrWhiteSpace(cmb_Paciente_Genero.Text) ||
+    string.IsNullOrWhiteSpace(cmb_Paciente_Nacionalidad.Text))
+            {
+                MessageBox.Show("Por favor complete todos los campos obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validar formato del correo
+            if (!EsCorreoValido(txt_Paciente_Correo.Text))
+            {
+                MessageBox.Show("El correo electrónico no tiene un formato válido.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validar teléfono (solo números y máx 10 dígitos)
+            if (!txt_Paciente_Telefono.Text.All(char.IsDigit) || txt_Paciente_Telefono.Text.Length > 10)
+            {
+                MessageBox.Show("El teléfono debe contener solo números y un máximo de 10 dígitos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             string nombre = txt_Paciente_Nombre.Text.Trim();
             string apellido = txt_Paciente_Apellido.Text.Trim();
@@ -102,7 +119,7 @@ namespace CAPA_PRESENTACION.Properties
             DateTime fechaNacimiento = dtp_Paciente_FDN.Value;
             string nacionalidad = cmb_Paciente_Nacionalidad.Text;
 
-           //esNuevoPaciente = false; // Noo es nuevo porque se acaba de guardar
+            //esNuevoPaciente = false; // Noo es nuevo porque se acaba de guardar
             btn_Paciente_Modificar.Enabled = true; // Ahora podemos modificar
 
             Logica_Del_Paciente logica = new Logica_Del_Paciente();
@@ -139,13 +156,25 @@ namespace CAPA_PRESENTACION.Properties
             }
 
         }
+        private bool EsCorreoValido(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         private void btn_Paciente_Cancelar_Click(object sender, EventArgs e)
         {
             HabilitarCampos(false);
             LimpiarCampos();
-            esNuevoPaciente = false; 
-            btn_Paciente_Modificar.Enabled = true; 
+            esNuevoPaciente = false;
+            btn_Paciente_Modificar.Enabled = true;
 
         }
 
@@ -163,29 +192,6 @@ namespace CAPA_PRESENTACION.Properties
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            Busqueda_Paciente buscador = new Busqueda_Paciente();
-
-            if (buscador.ShowDialog() == DialogResult.OK)
-            {
-                var p = buscador.PacienteSeleccionado;
-
-                txt_Paciente_Nombre.Text = p.Nombre;
-                txt_Paciente_Apellido.Text = p.Apellido;
-                txt_Paciente_Documento.Text = p.Documento;
-                cmb_Paciente_Genero.Text = p.Genero;
-                txt_Paciente_Correo.Text = p.Correo;
-                txt_Paciente_Telefono.Text = p.Telefono;
-                dtp_Paciente_FDN.Value = p.FechaNacimiento;
-                cmb_Paciente_Nacionalidad.Text = p.Nacionalidad;
-
-                idPacienteActual = p.ID;
-                esNuevoPaciente = false;
-                HabilitarCampos(false);
-            }
-        }
 
         private void btn_Paciente_Eliminar_Click(object sender, EventArgs e)
         {
@@ -216,6 +222,40 @@ namespace CAPA_PRESENTACION.Properties
                         MessageBox.Show("No se pudo eliminar el paciente.");
                     }
                 }
+            }
+        }
+
+        private void btn_Agregar_Click(object sender, EventArgs e)
+        {
+            esNuevoPaciente = true;
+            idPacienteActual = 0;
+            HabilitarCampos(true);
+            LimpiarCampos();
+            txt_Paciente_Nombre.Focus();
+            btn_Paciente_Modificar.Enabled = false;
+            btn_Paciente_Eliminar.Enabled = false;
+        }
+
+        private void btn_Buscar_Click(object sender, EventArgs e)
+        {
+            Busqueda_Paciente buscador = new Busqueda_Paciente();
+
+            if (buscador.ShowDialog() == DialogResult.OK)
+            {
+                var p = buscador.PacienteSeleccionado;
+
+                txt_Paciente_Nombre.Text = p.Nombre;
+                txt_Paciente_Apellido.Text = p.Apellido;
+                txt_Paciente_Documento.Text = p.Documento;
+                cmb_Paciente_Genero.Text = p.Genero;
+                txt_Paciente_Correo.Text = p.Correo;
+                txt_Paciente_Telefono.Text = p.Telefono;
+                dtp_Paciente_FDN.Value = p.FechaNacimiento;
+                cmb_Paciente_Nacionalidad.Text = p.Nacionalidad;
+
+                idPacienteActual = p.ID;
+                esNuevoPaciente = false;
+                HabilitarCampos(false);
             }
         }
     }

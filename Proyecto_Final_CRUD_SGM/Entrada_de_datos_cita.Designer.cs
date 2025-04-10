@@ -32,25 +32,23 @@
             panel1 = new Panel();
             dateTimePickerFecha = new DateTimePicker();
             cmbHora = new ComboBox();
-            pictureBox1 = new PictureBox();
+            ptb_Logo_Citas = new PictureBox();
             label15 = new Label();
             cmbDoctor = new ComboBox();
             label14 = new Label();
             label13 = new Label();
             panel2 = new Panel();
             panel5 = new Panel();
-            label12 = new Label();
+            lbl_Info_Correo = new Label();
             label10 = new Label();
-            label11 = new Label();
+            lbl_Info_Telefono = new Label();
             txtNombre = new TextBox();
             label1 = new Label();
             panel3 = new Panel();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            label5 = new Label();
             txtCorreoElectronico = new TextBox();
-            txtCedulaPasaporte = new TextBox();
             txtApellido = new TextBox();
             label7 = new Label();
             label8 = new Label();
@@ -60,7 +58,7 @@
             panel4 = new Panel();
             btnContinuar = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ptb_Logo_Citas).BeginInit();
             panel5.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
@@ -71,7 +69,7 @@
             panel1.BackColor = SystemColors.Highlight;
             panel1.Controls.Add(dateTimePickerFecha);
             panel1.Controls.Add(cmbHora);
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(ptb_Logo_Citas);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(cmbDoctor);
             panel1.Controls.Add(label14);
@@ -87,28 +85,30 @@
             // 
             dateTimePickerFecha.Format = DateTimePickerFormat.Short;
             dateTimePickerFecha.Location = new Point(29, 57);
-            dateTimePickerFecha.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
+            dateTimePickerFecha.MinDate = new DateTime(2025, 4, 10, 9, 27, 20, 0);
             dateTimePickerFecha.Name = "dateTimePickerFecha";
             dateTimePickerFecha.Size = new Size(109, 27);
             dateTimePickerFecha.TabIndex = 27;
+            dateTimePickerFecha.Value = new DateTime(2025, 4, 10, 9, 27, 20, 0);
             // 
             // cmbHora
             // 
+            cmbHora.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbHora.FormattingEnabled = true;
             cmbHora.Location = new Point(177, 56);
             cmbHora.Name = "cmbHora";
             cmbHora.Size = new Size(129, 28);
             cmbHora.TabIndex = 26;
             // 
-            // pictureBox1
+            // ptb_Logo_Citas
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(18, 224);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(288, 288);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 25;
-            pictureBox1.TabStop = false;
+            ptb_Logo_Citas.Image = (Image)resources.GetObject("ptb_Logo_Citas.Image");
+            ptb_Logo_Citas.Location = new Point(18, 224);
+            ptb_Logo_Citas.Name = "ptb_Logo_Citas";
+            ptb_Logo_Citas.Size = new Size(288, 288);
+            ptb_Logo_Citas.SizeMode = PictureBoxSizeMode.StretchImage;
+            ptb_Logo_Citas.TabIndex = 25;
+            ptb_Logo_Citas.TabStop = false;
             // 
             // label15
             // 
@@ -123,6 +123,7 @@
             // 
             // cmbDoctor
             // 
+            cmbDoctor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDoctor.FormattingEnabled = true;
             cmbDoctor.Location = new Point(18, 160);
             cmbDoctor.Name = "cmbDoctor";
@@ -160,24 +161,24 @@
             // 
             // panel5
             // 
-            panel5.Controls.Add(label12);
+            panel5.Controls.Add(lbl_Info_Correo);
             panel5.Controls.Add(label10);
-            panel5.Controls.Add(label11);
+            panel5.Controls.Add(lbl_Info_Telefono);
             panel5.Location = new Point(12, 526);
             panel5.Name = "panel5";
             panel5.Size = new Size(295, 125);
             panel5.TabIndex = 7;
             // 
-            // label12
+            // lbl_Info_Correo
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.ForeColor = SystemColors.ControlLightLight;
-            label12.Location = new Point(25, 77);
-            label12.Name = "label12";
-            label12.Size = new Size(262, 28);
-            label12.TabIndex = 6;
-            label12.Text = "informacion@grupouce.com";
+            lbl_Info_Correo.AutoSize = true;
+            lbl_Info_Correo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Info_Correo.ForeColor = SystemColors.ControlLightLight;
+            lbl_Info_Correo.Location = new Point(6, 75);
+            lbl_Info_Correo.Name = "lbl_Info_Correo";
+            lbl_Info_Correo.Size = new Size(281, 28);
+            lbl_Info_Correo.TabIndex = 6;
+            lbl_Info_Correo.Text = "medico.centro.uce@gmail.com";
             // 
             // label10
             // 
@@ -190,16 +191,16 @@
             label10.TabIndex = 4;
             label10.Text = "Pongase en contacto";
             // 
-            // label11
+            // lbl_Info_Telefono
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = SystemColors.Control;
-            label11.Location = new Point(57, 39);
-            label11.Name = "label11";
-            label11.Size = new Size(160, 28);
-            label11.TabIndex = 5;
-            label11.Text = "(809)  4354 4343";
+            lbl_Info_Telefono.AutoSize = true;
+            lbl_Info_Telefono.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Info_Telefono.ForeColor = SystemColors.Control;
+            lbl_Info_Telefono.Location = new Point(57, 39);
+            lbl_Info_Telefono.Name = "lbl_Info_Telefono";
+            lbl_Info_Telefono.Size = new Size(187, 28);
+            lbl_Info_Telefono.TabIndex = 5;
+            lbl_Info_Telefono.Text = "+1 (829) 539-0097  ";
             // 
             // txtNombre
             // 
@@ -219,7 +220,6 @@
             label1.Size = new Size(399, 38);
             label1.TabIndex = 2;
             label1.Text = "INFORMACION DE PACIENTE";
-            label1.Click += label1_Click;
             // 
             // panel3
             // 
@@ -229,7 +229,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(700, 85);
             panel3.TabIndex = 3;
-            panel3.Paint += panel3_Paint;
             // 
             // label2
             // 
@@ -261,16 +260,6 @@
             label4.TabIndex = 6;
             label4.Text = "* Correo Electronico";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(362, 347);
-            label5.Name = "label5";
-            label5.Size = new Size(195, 31);
-            label5.TabIndex = 7;
-            label5.Text = "Cedula/Pasaporte";
-            // 
             // txtCorreoElectronico
             // 
             txtCorreoElectronico.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -279,15 +268,6 @@
             txtCorreoElectronico.Name = "txtCorreoElectronico";
             txtCorreoElectronico.Size = new Size(280, 45);
             txtCorreoElectronico.TabIndex = 9;
-            // 
-            // txtCedulaPasaporte
-            // 
-            txtCedulaPasaporte.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCedulaPasaporte.Location = new Point(358, 381);
-            txtCedulaPasaporte.Multiline = true;
-            txtCedulaPasaporte.Name = "txtCedulaPasaporte";
-            txtCedulaPasaporte.Size = new Size(280, 49);
-            txtCedulaPasaporte.TabIndex = 10;
             // 
             // txtApellido
             // 
@@ -387,21 +367,21 @@
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(txtApellido);
-            Controls.Add(txtCedulaPasaporte);
             Controls.Add(txtCorreoElectronico);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(panel3);
             Controls.Add(txtNombre);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Entrada_de_datos_cita";
             Text = "Entrada_de_datos_cita";
             Load += Entrada_de_datos_cita_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ptb_Logo_Citas).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel3.ResumeLayout(false);
@@ -421,9 +401,7 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Label label5;
         private TextBox txtCorreoElectronico;
-        private TextBox txtCedulaPasaporte;
         private TextBox txtApellido;
         private Label label7;
         private Label label8;
@@ -432,15 +410,15 @@
         private RadioButton rbtnFemenino;
         private Panel panel4;
         private Button btnContinuar;
-        private Label label12;
-        private Label label11;
+        private Label lbl_Info_Correo;
+        private Label lbl_Info_Telefono;
         private Label label10;
         private Panel panel5;
         private Label label13;
         private ComboBox cmbDoctor;
         private Label label14;
         private Label label15;
-        private PictureBox pictureBox1;
+        private PictureBox ptb_Logo_Citas;
         private DateTimePicker dateTimePickerFecha;
         private ComboBox cmbHora;
     }

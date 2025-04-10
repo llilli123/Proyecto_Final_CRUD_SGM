@@ -14,12 +14,9 @@ namespace Proyecto_Final_CRUD_SGM
             ApplicationConfiguration.Initialize();
 
             var login = new Login();
-
-            // Muestra el formulario de login como diálogo
-            if (login.ShowDialog() == DialogResult.OK)
+            if (login.ShowDialog() == DialogResult.OK && login.FormularioParaAbrir != null)
             {
-                Application.Run(new Menu_Principal());
-
+                Application.Run(login.FormularioParaAbrir);
             }
         }
     }
