@@ -81,6 +81,7 @@ namespace CAPA_PRESENTACION.Properties
             HabilitarCampos(true);
             LimpiarCampos();
             txt_Paciente_Nombre.Focus();
+            btn_Paciente_Modificar.Enabled = false;
         }
 
         private void Entrada_Datos_Pacientes_Load(object sender, EventArgs e)
@@ -100,6 +101,9 @@ namespace CAPA_PRESENTACION.Properties
             string telefono = txt_Paciente_Telefono.Text.Trim();
             DateTime fechaNacimiento = dtp_Paciente_FDN.Value;
             string nacionalidad = cmb_Paciente_Nacionalidad.Text;
+
+           //esNuevoPaciente = false; // Noo es nuevo porque se acaba de guardar
+            btn_Paciente_Modificar.Enabled = true; // Ahora podemos modificar
 
             Logica_Del_Paciente logica = new Logica_Del_Paciente();
 
@@ -133,12 +137,16 @@ namespace CAPA_PRESENTACION.Properties
                     MessageBox.Show("Error al modificar el paciente.");
                 }
             }
+
         }
 
         private void btn_Paciente_Cancelar_Click(object sender, EventArgs e)
         {
             HabilitarCampos(false);
             LimpiarCampos();
+            esNuevoPaciente = false; 
+            btn_Paciente_Modificar.Enabled = true; 
+
         }
 
         private void btn_Paciente_Modificar_Click(object sender, EventArgs e)
