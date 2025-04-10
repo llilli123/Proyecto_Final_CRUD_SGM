@@ -23,26 +23,27 @@ namespace CAPA_PRESENTACION
         private Selector_Turnos_Logica Selct = new Selector_Turnos_Logica();
         private LogicaConsultaGestion Selct2 = new LogicaConsultaGestion();
 
-        private void CargarDoctores()
-        {
-            cmb_Consulta_Gestion_Doctor.DataSource = Selct2.ObtenerDoctores();
-            cmb_Consulta_Gestion_Doctor.DisplayMember = "NombreCompleto";
-            cmb_Consulta_Gestion_Doctor.ValueMember = "ID_DOCTOR";
-        }
         private void CargarTurnos()
         {
             if (cmb_Consulta_Gestion_Doctor.SelectedValue != null)
             {
-                var rowView = cmb_Consulta_Gestion_Doctor.SelectedItem as DataRowView;
+                int doctorId = Convert.ToInt32(cmb_Consulta_Gestion_Doctor.SelectedValue);
+                DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
 
-                if (rowView != null)
-                {
-                    int doctorId = Convert.ToInt32(rowView["ID_DOCTOR"]);
-                    DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
+                DataTable tabla = Selct.ObtenerTurnosPendientes(doctorId, fecha);
+                dgv_Paciente_Espera.DataSource = tabla;
+            }
+        }
 
-                    DataTable tabla = Selct.ObtenerTurnosPendientes(doctorId, fecha);
-                    dgv_Paciente_Espera.DataSource = tabla;
-                }
+        private void CargarTurnosAtendidos()
+        {
+            if (cmb_Consulta_Gestion_Doctor.SelectedValue != null)
+            {
+                int doctorId = Convert.ToInt32(cmb_Consulta_Gestion_Doctor.SelectedValue);
+                DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
+
+                DataTable tabla = Selct.ObtenerTurnosAtendidos(doctorId, fecha);
+                dataGridView2.DataSource = tabla;
             }
         }
 
@@ -58,29 +59,21 @@ namespace CAPA_PRESENTACION
                 {
                     int turno = turnoSelector.TurnoSeleccionado;
 
-                    // Obtener doctor y fecha seleccionados
-                    if (cmb_Consulta_Gestion_Doctor.SelectedValue != null)
+                    int doctorId = Convert.ToInt32(cmb_Consulta_Gestion_Doctor.SelectedValue);
+                    DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
+
+                    Selector_Turnos_Logica logica = new Selector_Turnos_Logica();
+                    bool ok = logica.InsertarTurno(paciente.ID, doctorId, fecha, turno);
+
+                    if (ok)
                     {
-                        int doctorId = Convert.ToInt32(cmb_Consulta_Gestion_Doctor.SelectedValue);
-                        DateTime fecha = dtp_Consulta_Gestion_Fecha.Value;
-
-                        // Lógica para insertar turno
-                        Selector_Turnos_Logica logica = new Selector_Turnos_Logica();
-                        bool ok = logica.InsertarTurno(paciente.ID, doctorId, fecha, turno);
-
-                        if (ok)
-                        {
-                            MessageBox.Show("Turno asignado correctamente.");
-                            CargarTurnos();
-                        }
-                        else
-                        {
-                            MessageBox.Show("El turno ya está ocupado o ocurrió un error.");
-                        }
+                        MessageBox.Show("Turno asignado correctamente.");
+                        CargarTurnos();
+                        CargarTurnosAtendidos();
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar un doctor válido.");
+                        MessageBox.Show("Error al asignar turno.");
                     }
                 }
             }
@@ -88,34 +81,89 @@ namespace CAPA_PRESENTACION
 
         private void Consulta_Gestion_Load(object sender, EventArgs e)
         {
-
             CargarDoctores();
             CargarTurnos();
+            CargarTurnosAtendidos();
         }
 
-
+        private void CargarDoctores()
+        {
+            cmb_Consulta_Gestion_Doctor.DataSource = Selct2.ObtenerDoctores();
+            cmb_Consulta_Gestion_Doctor.DisplayMember = "NombreCompleto";
+            cmb_Consulta_Gestion_Doctor.ValueMember = "ID_DOCTOR";
+        }
 
         private void dtp_Consulta_Gestion_Fecha_Valor_Cambio(object sender, EventArgs e)
         {
             CargarTurnos();
+            CargarTurnosAtendidos();
         }
 
-        private void cmb_Consulta_Gestion_Doctor_SelectedIndexChanged(object sender, EventArgs e)
+        private void dgv_Paciente_Espera_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (cmb_Consulta_Gestion_Doctor.SelectedIndex != -1)
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dgv_Paciente_Espera.SelectedRows.Count > 0)
             {
-                CargarTurnos();
+                DialogResult confirmacion = MessageBox.Show(
+                    "¿Estás seguro de que deseas eliminar este turno?",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    var fila = dgv_Paciente_Espera.SelectedRows[0];
+                    int turnoId = Convert.ToInt32(fila.Cells["ID_TURNO"].Value);
+
+                    Selector_Turnos_Logica logica = new Selector_Turnos_Logica();
+                    bool eliminado = logica.EliminarTurno(turnoId);
+
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Turno eliminado correctamente.");
+                        CargarTurnos(); // Actualiza la tabla
+                        CargarTurnosAtendidos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrió un error al intentar eliminar el turno.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un turno de la tabla para eliminar.");
             }
         }
 
-        private void dgv_Paciente_Espera_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            var row = dgv_Paciente_Espera.Rows[e.RowIndex];
-            if (row.Cells["ESTADOTURNO"].Value?.ToString() == "Atendiendo")
+            if (dgv_Paciente_Espera.SelectedRows.Count > 0)
             {
-                row.DefaultCellStyle.Font = new Font(dgv_Paciente_Espera.Font, FontStyle.Bold);
+                int turnoId = Convert.ToInt32(dgv_Paciente_Espera.SelectedRows[0].Cells["ID_TURNO"].Value);
+
+                // Llamamos al método MarcarComoAtendido
+                bool actualizado = Selct.MarcarComoAtendido(turnoId);
+                if (actualizado)
+                {
+                    MessageBox.Show("Paciente marcado como atendido.");
+                    CargarTurnos(); // Refrescar la tabla
+                    CargarTurnosAtendidos();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar el turno.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una fila primero.");
             }
         }
-
     }
 }

@@ -8,50 +8,67 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-
 namespace CAPA_MODELO_DE_NEGOCIOS
 {
     public class Selector_Turnos_Logica
     {
         public bool InsertarTurno(int pacienteId, int doctorId, DateTime fecha, int turno)
         {
-            try
+            using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
             {
-                using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
+                // Verificar si el ID_TURNO ya existe
+                string checkQuery = "SELECT COUNT(*) FROM TURNOSCONSULTA WHERE ID_TURNO = @turno";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                checkCmd.Parameters.AddWithValue("@turno", turno);
+
+                int count = (int)checkCmd.ExecuteScalar();
+
+                // Si el ID_TURNO ya existe, generar un nuevo ID_TURNO único
+                while (count > 0)
                 {
-                    // Verifica si ya existe el turno para ese doctor en esa fecha
-                    string validar = @"SELECT COUNT(*) FROM TURNOSCONSULTA 
-                               WHERE ID_TURNO = @turno AND ID_DOCTOR = @doctorId AND FECHATURNO = @fecha";
-
-                    SqlCommand checkCmd = new SqlCommand(validar, conn);
-                    checkCmd.Parameters.AddWithValue("@turno", turno);
-                    checkCmd.Parameters.AddWithValue("@doctorId", doctorId);
-                    checkCmd.Parameters.AddWithValue("@fecha", fecha.Date);
-
-                    int existe = (int)checkCmd.ExecuteScalar();
-
-                    if (existe > 0)
-                    {
-                        return false; // Ya existe el turno
-                    }
-
-                    // Insertar nuevo turno
-                    string query = @"INSERT INTO TURNOSCONSULTA
-                            (ID_TURNO, PACIENTE_ID, ID_DOCTOR, FECHATURNO, ESTADOTURNO)
-                            VALUES (@turno, @pacienteId, @doctorId, @fecha, 'Sin atender')";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@turno", turno);
-                    cmd.Parameters.AddWithValue("@pacienteId", pacienteId);
-                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
-                    cmd.Parameters.AddWithValue("@fecha", fecha.Date);
-
-                    return cmd.ExecuteNonQuery() > 0;
+                    turno++;
+                    checkCmd.Parameters["@turno"].Value = turno;
+                    count = (int)checkCmd.ExecuteScalar();
                 }
+
+                // Insertar el nuevo turno
+                string query = @"INSERT INTO TURNOSCONSULTA
+                    (ID_TURNO, PACIENTE_ID, ID_DOCTOR, FECHATURNO, ESTADOTURNO)
+                    VALUES (@turno, @pacienteId, @doctorId, @fecha, 'Sin atender')";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pacienteId", pacienteId);
+                cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                cmd.Parameters.AddWithValue("@fecha", fecha.Date);
+                cmd.Parameters.AddWithValue("@turno", turno);
+
+                return cmd.ExecuteNonQuery() > 0;
             }
-            catch
+        }
+        public bool EliminarTurno(int turnoId)
+        {
+            using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
             {
-                return false;
+                string query = "DELETE FROM TURNOSCONSULTA WHERE ID_TURNO = @turnoId";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@turnoId", turnoId);
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        // Método para actualizar el estado del turno a "Atendido" (opcional para usar luego)
+        public bool MarcarComoAtendido(int turnoId)
+        {
+            using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
+            {
+                string query = "UPDATE TURNOSCONSULTA SET ESTADOTURNO = 'Atendido' WHERE ID_TURNO = @turnoId";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@turnoId", turnoId);
+
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
         public DataTable ObtenerTurnosPendientes(int doctorId, DateTime fecha)
@@ -60,16 +77,12 @@ namespace CAPA_MODELO_DE_NEGOCIOS
 
             using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
             {
-                string query = @"
-    SELECT T.ID_TURNO,T.PACIENTE_ID,
-           P.NOMBRE,
-           P.APELLIDO,
-           T.ESTADOTURNO
-    FROM TURNOSCONSULTA T
-    JOIN PACIENTES P ON T.PACIENTE_ID = P.PACIENTE_ID
-    WHERE T.ID_DOCTOR = @doctorId
-      AND CONVERT(DATE, T.FECHATURNO) = @fecha
-      AND T.ESTADOTURNO IN ('Sin atender', 'Atendiendo')";
+                string query = @"SELECT T.ID_TURNO, P.NOMBRE, P.APELLIDO, T.ESTADOTURNO
+                    FROM TURNOSCONSULTA T
+                    JOIN PACIENTES P ON T.PACIENTE_ID = P.PACIENTE_ID
+                    WHERE T.ID_DOCTOR = @doctorId
+                    AND CONVERT(DATE, T.FECHATURNO) = @fecha
+                    AND T.ESTADOTURNO = 'Sin atender'";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@doctorId", doctorId);
@@ -89,6 +102,29 @@ namespace CAPA_MODELO_DE_NEGOCIOS
             for (int i = 1; i <= 100; i++)
             {
                 tabla.Rows.Add(i);
+            }
+
+            return tabla;
+        }
+        public DataTable ObtenerTurnosAtendidos(int doctorId, DateTime fecha)
+        {
+            DataTable tabla = new DataTable();
+
+            using (SqlConnection conn = new CONEXIONDATOS().AbrirConexion())
+            {
+                string query = @"SELECT T.ID_TURNO, P.NOMBRE, P.APELLIDO, T.ESTADOTURNO
+                    FROM TURNOSCONSULTA T
+                    JOIN PACIENTES P ON T.PACIENTE_ID = P.PACIENTE_ID
+                    WHERE T.ID_DOCTOR = @doctorId
+                    AND CONVERT(DATE, T.FECHATURNO) = @fecha
+                    AND T.ESTADOTURNO = 'Atendido'";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                cmd.Parameters.AddWithValue("@fecha", fecha.Date);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
             }
 
             return tabla;
